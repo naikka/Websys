@@ -1,1 +1,4 @@
-
+.logo {
+    max-width: 150px; /* Adjust the size as needed */
+    float: right; /* Position the image on the right */
+  }
