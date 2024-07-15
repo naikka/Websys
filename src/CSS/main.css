@@ -2,3 +2,15 @@
     max-width: 150px; /* Adjust the size as needed */
     float: right; /* Position the image on the right */
   }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
