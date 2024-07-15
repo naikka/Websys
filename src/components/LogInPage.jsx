@@ -2,13 +2,20 @@ import '../CSS/main.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import pasonglogos from '../assets/pasonglogos.png';
 import sibalomlog from '../assets/sibalomlog.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function LogInPage() {
+    const navigate = useNavigate();
+
+    const handleLoginClick = () => {
+        // Redirect to the home page
+        navigate('/home');
+    };
 
     return (
         <>
-            <div className='container'>
-                <div className='row'>
+            <div className='container' style={{ height: '100vh' }}>
+                <div className='row h-100'>
                     <div className='col-sm-12 col-md-12 col-lg-12 p-5 d-flex align-items-center'>
                         <div className='p-5 d-flex justify-content-start'>
                             <img src={pasonglogos} className='img-fluid' alt='Pasong Image' style={{ width: '100px', height: '100px' }} />
@@ -26,9 +33,9 @@ export default function LogInPage() {
                         <div className='col-12 col-md-6 p-5 d-flex align-items-center justify-content-center'>
                             <form className='w-100' style={{ maxWidth: '400px', margin: 'auto' }}>
                                 <input className='form-control mb-2' placeholder='Username' style={{ fontSize: '1.2rem' }} />
-                                <input className='form-control mb-4' type='password' placeholder='Password' style={{ fontSize: '1.2rem' }} /> {/* Adjusted margin-bottom */}
+                                <input className='form-control mb-4' type='password' placeholder='Password' style={{ fontSize: '1.2rem' }} />
                                 <div className='d-grid gap-2'>
-                                    <button className="btn btn-primary mb-3" type="button">Log in</button>
+                                    <button className="btn btn-primary mb-3" type="button" onClick={handleLoginClick}>Log in</button>
                                     <div className="text-center">
                                         <h5>or</h5>
                                     </div>
