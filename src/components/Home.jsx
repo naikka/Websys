@@ -6,14 +6,15 @@ import pasonglogos from '../assets/pasonglogos.png'; // Path to Pasong logo imag
 export default function Home() {
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
-            {/* Blue sidebar on the left */}
+
+            {/* SIDEBAR DASHBOARD */}
             <div style={{ width: '280px', backgroundColor: '#0d47a1', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '3rem' }}>
-                {/* Logo centered vertically */}
+                
                 <img src={pasonglogos} alt="Pasong Logo" style={{ height: '120px', width: 'auto' }} />
-                {/* Dashboard text under the logo */}
+                
                 <h3 style={{ color: 'white', marginTop: '20px' }}>Dashboard</h3>
                 
-                {/* Buttons */}
+                
                 <div style={{ width: '100%', marginTop: '20px', textAlign: 'left', paddingLeft: '20px' }}>
                     <button style={buttonStyle}>
                         <i className="material-icons" style={iconStyle}>person</i>
@@ -38,23 +39,20 @@ export default function Home() {
                 </div>
             </div>
             
-            {/* White content area */}
+            
             <div style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
-                {/* Header with blue background */}
+                {/* HEADER */}
                 <div style={{ height: '80px', backgroundColor: '#efebe9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-                    {/* Placeholder for alignment */}
-                    <div style={{ width: '120px' }}></div> {/* Adjust width as needed */}
-                    
-                    {/* Admin link aligned to the right */}
+                    <div style={{ width: '120px' }}></div> 
                     <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: '4rem' }}>
                         <i className="material-icons" style={{ color: '#1976d2', fontSize: '26px', marginRight: '1rem' }}>person</i>
                         <a href="/admin" style={{ color: '#1976d2', fontSize: '20px', textDecoration: 'none' }}>Admin</a>
                     </div>
                 </div>
                 
-                {/* Main content area */}
+                {/* MAINCONTENT */}
                 <div style={{ padding: '20px' }}>
-                    {/* Add your main content here */}
+                    
                     <h1>DASHBOARD</h1>
                     
                 </div>
