@@ -39,9 +39,9 @@ export default function Home() {
             </div>
             
             {/* White content area */}
-            <div style={{ flex: 1, backgroundColor: 'white' }}>
+            <div style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
                 {/* Header with blue background */}
-                <div style={{ height: '80px', backgroundColor: '#e8eaf6', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }}>
+                <div style={{ height: '80px', backgroundColor: '#efebe9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
                     {/* Placeholder for alignment */}
                     <div style={{ width: '120px' }}></div> {/* Adjust width as needed */}
                     
