@@ -7,9 +7,14 @@ import { useNavigate } from 'react-router-dom';
 export default function LogInPage() {
     const navigate = useNavigate();
 
-    const handleLoginClick = () => {
-        // Redirect to the home page
-        navigate('/home');
+    const handleLoginClick = (type) => {
+        if (type === 'personnel') {
+            // Handle personnel login
+            navigate('/Home'); // Example route for personnel
+        } else if (type === 'admin') {
+            // Handle admin login
+            navigate('/Home'); // Example route for admin
+        }
     };
 
     return (
@@ -31,15 +36,12 @@ export default function LogInPage() {
 
                     <div className='col-12 d-flex justify-content-center'>
                         <div className='col-12 col-md-6 p-5 d-flex align-items-center justify-content-center'>
-                            <form className='w-100' style={{ maxWidth: '400px', margin: 'auto' }}>
+                            <form className='w-100' style={{ maxWidth: '400px', margin: 'auto', border: '1px solid #ccc', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
                                 <input className='form-control mb-2' placeholder='Username' style={{ fontSize: '1.2rem' }} />
                                 <input className='form-control mb-4' type='password' placeholder='Password' style={{ fontSize: '1.2rem' }} />
                                 <div className='d-grid gap-2'>
-                                    <button className="btn btn-primary mb-3" type="button" onClick={handleLoginClick}>Log in</button>
-                                    <div className="text-center">
-                                        <h5>or</h5>
-                                    </div>
-                                    <button className="btn btn-light" type="button">Sign up</button>
+                                    <button className="btn btn-primary mb-3" type="button" onClick={() => handleLoginClick('personnel')}>Personnel Login</button>
+                                    <button className="btn btn-secondary" type="button" onClick={() => handleLoginClick('admin')}>Admin Login</button>
                                 </div>
                             </form>
                         </div>

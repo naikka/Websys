@@ -12,8 +12,11 @@ export default function Home() {
                 
                 <img src={pasonglogos} alt="Pasong Logo" style={{ height: '120px', width: 'auto' }} />
                 
-                <h3 style={{ color: 'white', marginTop: '20px' }}>Dashboard</h3>
-                
+                <h3 style={{ color: 'white', marginTop: '2em' }}>
+                    <button style={dashboardButtonStyle}>
+                        Dashboard
+                    </button>
+                </h3>
                 
                 <div style={{ width: '100%', marginTop: '20px', textAlign: 'left', paddingLeft: '20px' }}>
                     <button style={buttonStyle}>
@@ -39,7 +42,6 @@ export default function Home() {
                 </div>
             </div>
             
-            
             <div style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
                 {/* HEADER */}
                 <div style={{ height: '80px', backgroundColor: '#efebe9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
@@ -50,11 +52,41 @@ export default function Home() {
                     </div>
                 </div>
                 
-                {/* MAINCONTENT */}
+                {/* MAIN CONTENT */}
                 <div style={{ padding: '20px' }}>
+                    <h2>DASHBOARD</h2>
                     
-                    <h1>DASHBOARD</h1>
-                    
+                    {/* Table for Barangay Officials */}
+                    <h3>Barangay Officials</h3>
+                    <div style={tableContainerStyle}>
+                        <table className="table table-striped" style={{ marginBottom: '0' }}>
+                            <thead>
+                                <tr>
+                                    <th>Picture</th>
+                                    <th>Name</th>
+                                    <th>Information</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img src="path/to/picture1.jpg" alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
+                                    <td>Official 1</td>
+                                    <td>Information about Official 1</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="path/to/picture2.jpg" alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
+                                    <td>Official 2</td>
+                                    <td>Information about Official 2</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="path/to/picture3.jpg" alt="Official 3" style={{ height: '100px', width: 'auto' }} /></td>
+                                    <td>Official 3</td>
+                                    <td>Information about Official 3</td>
+                                </tr>
+                                {/* Add more rows as needed */}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,4 +109,22 @@ const buttonStyle = {
 const iconStyle = {
     marginRight: '10px',
     fontSize: '24px'
+};
+
+const dashboardButtonStyle = {
+    backgroundColor: 'white',
+    border: '2px solid white',
+    borderRadius: '2px',
+    color: 'black',
+    fontSize: '18px',
+    padding: '10px 20px',
+    cursor: 'pointer'
+};
+
+const tableContainerStyle = {
+    border: '1px solid #ddd',
+    borderRadius: '2px',
+    maxHeight: '400px', // Adjust height as needed
+    overflowY: 'scroll',
+    padding: '10px'
 };
