@@ -4,6 +4,30 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import pasonglogos from '../assets/pasonglogos.png'; // Path to Pasong logo image
 
 export default function Home() {
+    const navigate = useNavigate();
+
+    const handleLoginClick = (type) => {
+        if (type === 'dashboard') {
+            // Handle personnel login
+            navigate('/Home'); // Example route for personnel
+        } else if (type === 'user') {
+            // Handle admin login
+            navigate('/User'); // Example route for admin
+        } else if (type === 'resident') {
+            // Handle admin login
+            navigate('/Resident'); // Example route for admin
+        } else if (type === 'documents') {
+            // Handle admin login
+            navigate('/Documents'); // Example route for admin
+        } else if (type === 'history') {
+            // Handle admin login
+            navigate('/History'); // Example route for admin
+        } else if (type === 'exit') {
+            // Handle admin login
+            navigate('/LogInPage'); // Example route for admin
+        } 
+    };
+
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
 
@@ -13,34 +37,33 @@ export default function Home() {
                 <img src={pasonglogos} alt="Pasong Logo" style={{ height: '120px', width: 'auto' }} />
                 
                 <h3 style={{ color: 'white', marginTop: '2em' }}>
-                    <button style={dashboardButtonStyle}>
+                    <button style={dashboardButtonStyle} type="button" onClick={() => handleLoginClick('dashboard')}>
                         Dashboard
                     </button>
                 </h3>
                 
                 <div style={{ width: '100%', marginTop: '20px', textAlign: 'left', paddingLeft: '20px' }}>
                     <button style={buttonStyle}>
-                        <i className="material-icons" style={iconStyle}>person</i>
+                        <i className="material-icons" style={iconStyle} type="button" onClick={() => handleLoginClick('user')}>person</i>
                         User
                     </button>
                     <button style={buttonStyle}>
-                        <i className="material-icons" style={iconStyle}>group</i>
+                        <i className="material-icons" style={iconStyle} type="button" onClick={() => handleLoginClick('resident')}>group</i>
                         Resident
                     </button>
                     <button style={buttonStyle}>
-                        <i className="material-icons" style={iconStyle}>description</i>
+                        <i className="material-icons" style={iconStyle} type="button" onClick={() => handleLoginClick('documents')}>description</i>
                         Documents
                     </button>
                     <button style={buttonStyle}>
-                        <i className="material-icons" style={iconStyle}>history</i>
+                        <i className="material-icons" style={iconStyle} type="button" onClick={() => handleLoginClick('history')}>history</i>
                         History
                     </button>
                     <button style={buttonStyle}>
-                        <i className="material-icons" style={iconStyle}>exit_to_app</i>
+                        <i className="material-icons" style={iconStyle} type="button" onClick={() => handleLoginClick('exit')}>exit_to_app</i>
                         Log Out
                     </button>
                 </div>
-            </div>
             
             <div style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
                 {/* HEADER */}
@@ -88,6 +111,7 @@ export default function Home() {
                         </table>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );
