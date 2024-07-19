@@ -3,7 +3,7 @@ import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import pasonglogos from '../assets/pasonglogos.png'; // Path to Pasong logo image
 
-export default function Home() {
+export default function Documents() {
     const navigate = useNavigate();
 
     const handleLoginClick = (type) => {
