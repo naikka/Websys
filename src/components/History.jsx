@@ -69,7 +69,7 @@ export default function History() {
 
                 {/* MAIN CONTENT */}
                 <div style={{ padding: '20px' }}>
-                    <h2>DASHBOARD</h2>
+                    <h2>History</h2>
                 </div>
             </div>
         </div>
