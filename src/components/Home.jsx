@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import pasonglogos from '../assets/pasonglogos.png'; // Path to Pasong logo image
+import defaultimage from '../'assets/defaultimage.png';
+
 
 export default function Home() {
     const navigate = useNavigate();
