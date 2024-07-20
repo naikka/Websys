@@ -62,7 +62,7 @@ export default function OfficialUnit() {
 
             {/* MAIN CONTENT */}
             <div style={{ padding: '20px', backgroundColor: '#f5f5f5' }}>
-                <h2>User</h2>
+                <h2>OfficialUnit</h2>
                 {/* Your main content goes here */}
             </div>
         </div>

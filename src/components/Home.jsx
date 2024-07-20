@@ -72,10 +72,6 @@ export default function Home() {
                         <i className="material-icons" style={iconStyle}>dashboard</i>
                         {isSidebarOpen && <span>Dashboard</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('user')}>
-                        <i className="material-icons" style={iconStyle}>person</i>
-                        {isSidebarOpen && <span>User</span>}
-                    </button>
                     <button style={buttonStyle} type="button" onClick={() => handleLoginClick('resident')}>
                         <i className="material-icons" style={iconStyle}>group</i>
                         {isSidebarOpen && <span>Resident</span>}
@@ -87,6 +83,10 @@ export default function Home() {
                     <button style={buttonStyle} type="button" onClick={() => handleLoginClick('officialunit')}>
                         <i className="material-icons" style={iconStyle}>business</i> {/* Updated icon */}
                         {isSidebarOpen && <span>Official Unit</span>}
+                    </button>
+                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('user')}>
+                        <i className="material-icons" style={iconStyle}>person</i>
+                        {isSidebarOpen && <span>User</span>}
                     </button>
                     <button style={buttonStyle} type="button" onClick={() => handleLoginClick('exit')}>
                         <i className="material-icons" style={iconStyle}>exit_to_app</i>
@@ -156,11 +156,11 @@ export default function Home() {
                                 <h2 style={boxNumberStyle}>200</h2>
                             </div>
                             <div style={boxStyle}>
-                                <p style={boxTextStyle}>Registered Voters</p>
+                                <p style={boxTextStyle}>Female</p>
                                 <h2 style={boxNumberStyle}>200</h2>
                             </div>
                             <div style={boxStyle}>
-                                <p style={boxTextStyle}>Female</p>
+                                <p style={boxTextStyle}>Registered Voters</p>
                                 <h2 style={boxNumberStyle}>200</h2>
                             </div>
                         </div>

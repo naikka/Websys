@@ -62,7 +62,7 @@ export default function Resident() {
 
             {/* MAIN CONTENT */}
             <div style={{ padding: '20px', backgroundColor: '#f5f5f5' }}>
-                <h2>User</h2>
+                <h2>Resident</h2>
                 {/* Your main content goes here */}
             </div>
         </div>
