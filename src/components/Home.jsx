@@ -106,32 +106,32 @@ export default function Home() {
 
                 {/* MAIN CONTENT */}
                 <div style={{ padding: '20px' }}>
-                    <h2>DASHBOARD</h2>
-                    <h3>Barangay Officials</h3>
+                    <h4 style={{ marginBottom: '20px' }}>DASHBOARD</h4>
+                    <h5 style={{ marginBottom: '15px' }}>Barangay Officials</h5>
                     <div style={tableContainerStyle}>
-                        <table className="table table-striped" style={{ marginBottom: '0' }}>
+                        <table className="table table-striped" style={{ width: '100%', marginBottom: '0' }}>
                             <thead>
                                 <tr>
                                     <th>Picture</th>
                                     <th>Name</th>
-                                    <th>Information</th>
+                                    <th>Position</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr style={{ height: '20px' }}>
                                     <td><img src="path/to/picture1.jpg" alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
                                     <td>Official 1</td>
-                                    <td>Information about Official 1</td>
+                                    <td>Position of Official 1</td>
                                 </tr>
-                                <tr>
+                                <tr style={{ height: '20px' }}>
                                     <td><img src="path/to/picture2.jpg" alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
                                     <td>Official 2</td>
-                                    <td>Information about Official 2</td>
+                                    <td>Position of Official 2</td>
                                 </tr>
-                                <tr>
+                                <tr style={{ height: '20px' }}>
                                     <td><img src="path/to/picture3.jpg" alt="Official 3" style={{ height: '100px', width: 'auto' }} /></td>
                                     <td>Official 3</td>
-                                    <td>Information about Official 3</td>
+                                    <td>Position of Official 3</td>
                                 </tr>
                                 {/* Add more rows as needed */}
                             </tbody>
@@ -163,8 +163,11 @@ const iconStyle = {
 
 const tableContainerStyle = {
     border: '1px solid #ddd',
-    borderRadius: '2px',
-    maxHeight: '400px', // Adjust height as needed
+    borderRadius: '8px',
+    width: '400px',
+    height: '500px',
     overflowY: 'scroll',
-    padding: '10px'
+    padding: '10px',
+    margin: 'auto', // Center horizontally
+    marginLeft: '0', // Align left
 };
