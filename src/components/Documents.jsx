@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
@@ -6,8 +6,9 @@ import pasonglogos from '../assets/pasonglogos.png'; // Path to Pasong logo imag
 
 export default function Documents() {
     const navigate = useNavigate();
+    const [isSidebarOpen, setSidebarOpen] = useState(true);
 
-    const handleLoginClick = (type) => {
+    const handleNavigation = (type) => {
         if (type === 'dashboard') {
             navigate('/Home');
         } else if (type === 'user') {
@@ -21,38 +22,74 @@ export default function Documents() {
         } else if (type === 'exit') {
             navigate('/LogInPage');
         }
+        if (isSidebarOpen) setSidebarOpen(false); // Collapse sidebar after navigation
+    };
+
+    const toggleSidebar = () => {
+        setSidebarOpen(prevState => !prevState); // Toggle sidebar open/close state
     };
 
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
             {/* SIDEBAR DASHBOARD */}
-            <div style={{ width: '280px', backgroundColor: '#0d47a1', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '3rem' }}>
-                <img src={pasonglogos} alt="Pasong Logo" style={{ height: '120px', width: 'auto' }} />
-                <h3 style={{ color: 'white', marginTop: '2em' }}>
-                    <button style={dashboardButtonStyle} type="button" onClick={() => handleLoginClick('dashboard')}>
-                        Dashboard
+            <div style={{ 
+                width: isSidebarOpen ? '280px' : '80px', 
+                backgroundColor: '#0d47a1', 
+                position: 'relative', 
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'center', 
+                paddingTop: '2rem', 
+                transition: 'width 0.3s' 
+            }}>
+                <button 
+                    onClick={toggleSidebar} 
+                    style={{ 
+                        backgroundColor: 'transparent', 
+                        border: 'none', 
+                        cursor: 'pointer', 
+                        alignSelf: 'flex-end', 
+                        marginRight: '1.5em', 
+                        marginBottom: '1rem' 
+                    }}
+                >
+                    <i className="material-icons" style={{ color: 'white', fontSize: '26px' }}>
+                        {isSidebarOpen ? 'dehaze' : 'menu'}
+                    </i>
+                </button>
+                {isSidebarOpen && <img src={pasonglogos} alt="Pasong Logo" style={{ height: '120px', width: 'auto' }} />}
+                <div style={{ 
+                    width: '100%', 
+                    marginTop: '20px', 
+                    textAlign: 'left', 
+                    paddingLeft: isSidebarOpen ? '20px' : '0', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: isSidebarOpen ? 'flex-start' : 'center' 
+                }}>
+                    <button style={buttonStyle} type="button" onClick={() => handleNavigation('dashboard')}>
+                        <i className="material-icons" style={iconStyle}>dashboard</i>
+                        {isSidebarOpen && <span>Dashboard</span>}
                     </button>
-                </h3>
-                <div style={{ width: '100%', marginTop: '20px', textAlign: 'left', paddingLeft: '20px' }}>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('user')}>
+                    <button style={buttonStyle} type="button" onClick={() => handleNavigation('user')}>
                         <i className="material-icons" style={iconStyle}>person</i>
-                        User
+                        {isSidebarOpen && <span>User</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('resident')}>
+                    <button style={buttonStyle} type="button" onClick={() => handleNavigation('resident')}>
                         <i className="material-icons" style={iconStyle}>group</i>
-                        Resident
+                        {isSidebarOpen && <span>Resident</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('documents')}>
+                    <button style={buttonStyle} type="button" onClick={() => handleNavigation('documents')}>
                         <i className="material-icons" style={iconStyle}>description</i>
-                        Documents
+                        {isSidebarOpen && <span>Documents</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('history')}>
+                    <button style={buttonStyle} type="button" onClick={() => handleNavigation('history')}>
                         <i className="material-icons" style={iconStyle}>history</i>
-                        History
+                        {isSidebarOpen && <span>History</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('exit')}>
+                    <button style={buttonStyle} type="button" onClick={() => handleNavigation('exit')}>
                         <i className="material-icons" style={iconStyle}>exit_to_app</i>
-                        Log Out
+                        {isSidebarOpen && <span>Log Out</span>}
                     </button>
                 </div>
             </div>
@@ -69,7 +106,7 @@ export default function Documents() {
 
                 {/* MAIN CONTENT */}
                 <div style={{ padding: '20px' }}>
-                    <h2>Documents Request</h2>
+                    <h2>User</h2>
                 </div>
             </div>
         </div>
@@ -92,14 +129,4 @@ const buttonStyle = {
 const iconStyle = {
     marginRight: '10px',
     fontSize: '24px'
-};
-
-const dashboardButtonStyle = {
-    backgroundColor: 'white',
-    border: '2px solid white',
-    borderRadius: '2px',
-    color: 'black',
-    fontSize: '18px',
-    padding: '10px 20px',
-    cursor: 'pointer'
 };
