@@ -4,7 +4,7 @@ import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import 'materialize-css/dist/css/materialize.min.css'; // Materialize CSS
 
-export default function User() {
+export default function OfficialUnit() {
     const navigate = useNavigate();
 
     const handleGoBack = () => {

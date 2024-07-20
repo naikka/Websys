@@ -5,7 +5,7 @@ import Home from '../components/Home'; // Import Home component
 import User from '../components/User';
 import Resident from '../components/Resident';
 import Documents from '../components/Documents'; // Adjust the import based on your file structure
-import History from '../components/History';
+import OfficialUnit from '../components/OfficialUnit';
 
 export default function App() {
     return (
@@ -17,7 +17,7 @@ export default function App() {
                 <Route path="user" element={<User />} />
                 <Route path="resident" element={<Resident />} />
                 <Route path="documents" element={<Documents />} />
-                <Route path="history" element={<History />} />
+                <Route path="officialUnit" element={<OfficialUnit />} />
                 {/* Add other routes as needed */}
             </Routes>
         </BrowserRouter>
