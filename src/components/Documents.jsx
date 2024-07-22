@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import M from 'materialize-css';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
@@ -7,24 +8,12 @@ import 'materialize-css/dist/css/materialize.min.css'; // Materialize CSS
 export default function Documents() {
     const navigate = useNavigate();
 
+    useEffect(() => {
+        M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {});
+    }, []);
+
     const handleGoBack = () => {
         navigate(-1); // Navigate to the previous page
-    };
-
-    const handleNavigation = (type) => {
-        if (type === 'dashboard') {
-            navigate('/Home');
-        } else if (type === 'user') {
-            navigate('/User');
-        } else if (type === 'resident') {
-            navigate('/Resident');
-        } else if (type === 'documents') {
-            navigate('/Documents');
-        } else if (type === 'history') {
-            navigate('/History');
-        } else if (type === 'exit') {
-            navigate('/LogInPage');
-        }
     };
 
     return (
@@ -61,9 +50,86 @@ export default function Documents() {
             </div>
 
             {/* MAIN CONTENT */}
-            <div style={{ padding: '20px', backgroundColor: '#f5f5f5' }}>
-                <h2>Documents</h2>
-                {/* Your main content goes here */}
+            <div style={{ padding: '20px', backgroundColor: '#f5f5f5', height: 'calc(100vh - 80px)', overflowY: 'auto' }}>
+                <h3 style={{ fontSize: '24px', marginTop: '0' }}>Documents</h3>
+                
+                {/* Search Bar */}
+                <div className="input-field" style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+                    <i className="material-icons" style={{ marginRight: '20px' }}>search</i>
+                    <input id="search" type="text" style={{ maxWidth: '300px', marginBottom: '0' }} />
+                    <label htmlFor="search" style={{ left: '48px' }}>Search Resident</label>
+                </div>
+
+                {/* Table Container */}
+                <div style={{ 
+                    backgroundColor: 'white', 
+                    padding: '20px', 
+                    borderRadius: '8px', 
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+                    maxHeight: '70vh', 
+                    overflowY: 'auto' 
+                }}>
+                    <table className="striped">
+                        <thead>
+                            <tr>
+                                <th style={{ width: '20%' }}>Name</th>
+                                <th style={{ width: '20%' }}>Birthday</th>
+                                <th style={{ width: '20%' }}>Sex</th>
+                                <th style={{ width: '20%' }}>Contact Number</th>
+                                <th style={{ width: '20%' }}>Documents</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>John Doe</td>
+                                <td>01/01/1990</td>
+                                <td>Male</td>
+                                <td>123-456-7890</td>
+                                <td>
+                                    <button className="btn dropdown-trigger" data-target="dropdown1">Select Document</button>
+                                    <ul id="dropdown1" className="dropdown-content">
+                                        <li><a href="#!">Barangay Clearance</a></li>
+                                        <li><a href="#!">Business Clearance</a></li>
+                                        <li><a href="#!">Barangay Indigency</a></li>
+                                        <li><a href="#!">Barangay Residency</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jane Smith</td>
+                                <td>02/02/1992</td>
+                                <td>Female</td>
+                                <td>098-765-4321</td>
+                                <td>
+                                    <button className="btn dropdown-trigger" data-target="dropdown2">Select Document</button>
+                                    <ul id="dropdown2" className="dropdown-content">
+                                        <li><a href="#!">Barangay Clearance</a></li>
+                                        <li><a href="#!">Business Clearance</a></li>
+                                        <li><a href="#!">Barangay Indigency</a></li>
+                                        <li><a href="#!">Barangay Residency</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jane Smith</td>
+                                <td>02/02/1992</td>
+                                <td>Female</td>
+                                <td>098-765-4321</td>
+                                <td>
+                                    <button className="btn dropdown-trigger" data-target="dropdown2">Select Document</button>
+                                    <ul id="dropdown2" className="dropdown-content">
+                                        <li><a href="#!">Barangay Clearance</a></li>
+                                        <li><a href="#!">Business Clearance</a></li>
+                                        <li><a href="#!">Barangay Indigency</a></li>
+                                        <li><a href="#!">Barangay Residency</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            
+                            {/* Add more rows as needed */}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );

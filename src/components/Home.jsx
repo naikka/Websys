@@ -81,8 +81,8 @@ export default function Home() {
                         {isSidebarOpen && <span>Documents</span>}
                     </button>
                     <button style={buttonStyle} type="button" onClick={() => handleLoginClick('officialunit')}>
-                        <i className="material-icons" style={iconStyle}>business</i> {/* Updated icon */}
-                        {isSidebarOpen && <span>Official Unit</span>}
+                        <i className="material-icons" style={iconStyle}>recent_actors</i> {/* Updated icon */}
+                        {isSidebarOpen && <span>Barangay Official</span>}
                     </button>
                     <button style={buttonStyle} type="button" onClick={() => handleLoginClick('user')}>
                         <i className="material-icons" style={iconStyle}>person</i>
