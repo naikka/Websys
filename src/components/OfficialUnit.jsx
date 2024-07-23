@@ -49,11 +49,18 @@ export default function OfficialUnit() {
                 <h3 style={{ fontSize: '24px', marginTop: '0' }}>Official Unit</h3>
                 
                 {/* Search Bar */}
-                <div className="input-field" style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
-                    <i className="material-icons" style={{ marginRight: '20px' }}>search</i>
-                    <input id="search" type="text" style={{ maxWidth: '300px', marginBottom: '0' }} />
-                    <label htmlFor="search" style={{ left: '48px' }}>Search Barangay Official</label>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 20px', padding: '10px 0' }}>
+                    <div className="input-field" style={{ display: 'flex', alignItems: 'center', marginRight: '20px' }}>
+                        <i className="material-icons" style={{ marginRight: '20px' }}>search</i>
+                        <input id="search" type="text" style={{ maxWidth: '300px', marginBottom: '0' }} />
+                        <label htmlFor="search" style={{ left: '48px' }}>Search Barangay Official</label>
+                    </div>
+                    <button className="btn waves-effect waves-light" style={{ backgroundColor: '#1976d2', color: 'white' }}>
+                        <i className="material-icons left" style={{paddingRight:'4px', margin:'0'}}>add</i>
+                        Create
+                    </button>
                 </div>
+
 
                 {/* Table Container */}
                 <div style={{ 
