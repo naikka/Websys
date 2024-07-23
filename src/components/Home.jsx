@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
@@ -8,6 +8,7 @@ import defaultimage from '../assets/defaultimage.png'; // Default image for offi
 export default function Home() {
     const navigate = useNavigate();
     const [isSidebarOpen, setSidebarOpen] = useState(true);
+    const [currentTime, setCurrentTime] = useState(new Date());
 
     const handleLoginClick = (type) => {
         if (type === 'dashboard') {
@@ -28,6 +29,18 @@ export default function Home() {
 
     const toggleSidebar = () => {
         setSidebarOpen(prevState => !prevState); // Toggle sidebar open/close state
+    };
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+
+        return () => clearInterval(intervalId);
+    }, []);
+
+    const formatTime = (date) => {
+        return date.toLocaleString('en-US', { timeZone: 'Asia/Manila', hour12: false });
     };
 
     return (
@@ -51,17 +64,17 @@ export default function Home() {
                         cursor: 'pointer', 
                         alignSelf: 'flex-end', 
                         marginRight: '1.5em', 
-                        marginBottom: '1rem' 
+                        marginBottom: '2rem' 
                     }}
                 >
                     <i className="material-icons" style={{ color: 'white', fontSize: '26px' }}>
                         {isSidebarOpen ? 'dehaze' : 'menu'}
                     </i>
                 </button>
-                {isSidebarOpen && <img src={pasonglogos} alt="Pasong Logo" style={{ height: '120px', width: 'auto' }} />}
+                {isSidebarOpen && <img src={pasonglogos} alt="Pasong Logo" style={{ height: '120px', width: '120px'}} />}
                 <div style={{ 
                     width: '100%', 
-                    marginTop: '20px', 
+                    marginTop: '44px', 
                     textAlign: 'left', 
                     paddingLeft: isSidebarOpen ? '20px' : '0', 
                     display: 'flex', 
@@ -93,6 +106,12 @@ export default function Home() {
                         {isSidebarOpen && <span>Log Out</span>}
                     </button>
                 </div>
+                {isSidebarOpen && (
+                    <div style={{ marginTop: 'auto', marginBottom: '20px', color: 'white', textAlign: 'center' }}>
+                        <div>{currentTime.toLocaleDateString('en-US', { weekday: 'long', timeZone: 'Asia/Manila' })}</div>
+                        <div>{formatTime(currentTime)}</div>
+                    </div>
+                )}
             </div>
 
             <div style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
