@@ -28,7 +28,7 @@ export default function Home() {
     };
 
     const toggleSidebar = () => {
-        setSidebarOpen(prevState => !prevState); // Toggle sidebar open/close state
+        setSidebarOpen(prevState => !prevState); 
     };
 
     useEffect(() => {
@@ -44,7 +44,7 @@ export default function Home() {
     };
 
     return (
-        <div style={{ display: 'flex', height: '100%' }}>
+        <div style={{ display: 'flex', height: '100vh' }}> {/* Full viewport height */}
             {/* SIDEBAR DASHBOARD */}
             <div style={{ 
                 width: isSidebarOpen ? '280px' : '80px', 
@@ -54,7 +54,8 @@ export default function Home() {
                 flexDirection: 'column', 
                 alignItems: 'center', 
                 paddingTop: '2rem', 
-                transition: 'width 0.3s' 
+                transition: 'width 0.3s',
+                height: '100%' // Make sidebar fill height
             }}>
                 <button 
                     onClick={toggleSidebar} 
@@ -114,7 +115,7 @@ export default function Home() {
                 )}
             </div>
 
-            <div style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
+            <div style={{ flex: 1, backgroundColor: '#f5f5f5', display: 'flex', flexDirection: 'column' }}>
                 {/* HEADER */}
                 <div style={{ height: '60px', backgroundColor: '#efebe9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
                     <div style={{ width: '120px' }}></div>
@@ -125,8 +126,8 @@ export default function Home() {
                 </div>
 
                 {/* MAIN CONTENT */}
-                <div style={{ padding: '20px', display: 'flex' }}>
-                    <div style={{ width: '70%', marginRight: '20px' }}>
+                <div style={{ flex: 1, padding: '20px', display: 'flex' }}>
+                    <div style={{ width: '70%', marginRight: '20px', display: 'flex', flexDirection: 'column' }}>
                         <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginBottom: '10px', marginTop:'0' }}>Dashboard</h2>
                         <h3 style={{ color: '#333', fontSize: '20px', marginBottom: '20px', marginTop:'0',marginTop:'4rem' }}>Current Barangay Officials</h3>
                         <div style={tableContainerStyle}>
@@ -139,22 +140,22 @@ export default function Home() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr style={{ height: '20px' }}>
+                                    <tr style={tableRowStyle}>
                                         <td><img src={defaultimage} alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
                                         <td>Juan Dela Cruz</td>
                                         <td>Position of Official 1</td>
                                     </tr>
-                                    <tr style={{ height: '20px' }}>
+                                    <tr style={tableRowStyle}>
                                         <td><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
                                         <td>Official 2</td>
                                         <td>Position of Official 2</td>
                                     </tr>
-                                    <tr style={{ height: '20px' }}>
+                                    <tr style={tableRowStyle}>
                                         <td><img src={defaultimage} alt="Official 3" style={{ height: '100px', width: 'auto' }} /></td>
                                         <td>Official 3</td>
                                         <td>Position of Official 3</td>
                                     </tr>
-                                    <tr style={{ height: '20px' }}>
+                                    <tr style={tableRowStyle}>
                                         <td><img src={defaultimage} alt="Official 4" style={{ height: '100px', width: 'auto' }} /></td>
                                         <td>Official 4</td>
                                         <td>Position of Official 4</td>
@@ -163,9 +164,9 @@ export default function Home() {
                             </table>
                         </div>
                     </div>
-                    <div style={{ width: '30%' }}>
+                    <div style={{ width: '30%', display: 'flex', flexDirection: 'column' }}>
                         <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', marginTop:'0' }}>Residents Record Summary</h2>
-                        <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', position: 'relative', flex: 1 }}>
                             <div style={boxStyle}>
                                 <i className="material-icons" style={boxIconStyle}>people</i>
                                 <p style={boxTextStyle}>Total Number Of Residents</p>
@@ -219,7 +220,8 @@ const boxStyle = {
     border: '1px solid #ddd', 
     borderRadius: '10px', 
     marginBottom: '10px',
-    position: 'relative' // Make the box position relative for the absolute positioning of icon
+    position: 'relative',
+    flex: 1 // Ensure the box expands to fill available height
 };
 
 const boxTextStyle = {
@@ -238,17 +240,21 @@ const boxNumberStyle = {
 const boxIconStyle = {
     fontSize: '36px',
     color: '#333',
-    position: 'absolute', // Positioning the icon absolutely within the box
-    bottom: '10px', // Distance from the bottom of the box
-    left: '10px' // Distance from the left of the box
+    position: 'absolute', 
+    bottom: '10px', 
+    left: '10px' 
 };
 
 const tableContainerStyle = {
     border: '1px solid #ddd',
     borderRadius: '8px',
-    width: '100%', // Adjust the width as necessary
-    height: '500px',
+    width: '100%', 
+    height: '100%',
     overflowY: 'scroll',
     padding: '10px',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+};
+
+const tableRowStyle = {
+    height: '20px' 
 };
