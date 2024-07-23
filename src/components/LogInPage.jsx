@@ -32,8 +32,8 @@ export default function LogInPage() {
                         <div className='col-12 col-md-6 p-5 d-flex align-items-center justify-content-center'>
                             <form className='w-100' style={{ maxWidth: '400px', margin: 'auto', border: '1px solid #ccc', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
                                 <h3 className='text-center mb-4' style={{fontSize:'2rem', fontStyle:'normal'}}>Welcome Back!</h3>
-                                <input className='form-control mb-2' value={username} placeholder='Username' style={{ fontSize: '1.2rem'}} />
-                                <input className='form-control mb-4' value={password} type='password' placeholder='Password' style={{ fontSize: '1.2rem'}} />
+                                <input className='form-control mb-2'  placeholder='Username' style={{ fontSize: '1.2rem'}} />
+                                <input className='form-control mb-4'  type='password' placeholder='Password' style={{ fontSize: '1.2rem'}} />
                                 <div className='d-grid gap-2'>
                                     <button className="btn btn-secondary mb-3" type="button" onClick={handleLoginClick} style={{ backgroundColor:'#1565c0' }}>Log In</button>
                                 </div>
