@@ -165,20 +165,24 @@ export default function Home() {
                     </div>
                     <div style={{ width: '30%' }}>
                         <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', marginTop:'0' }}>Residents Record Summary</h2>
-                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
                             <div style={boxStyle}>
+                                <i className="material-icons" style={boxIconStyle}>people</i>
                                 <p style={boxTextStyle}>Total Number Of Residents</p>
                                 <h2 style={boxNumberStyle}>200</h2>
                             </div>
                             <div style={boxStyle}>
+                                <i className="material-icons" style={boxIconStyle}>male</i>
                                 <p style={boxTextStyle}>Male</p>
                                 <h2 style={boxNumberStyle}>200</h2>
                             </div>
                             <div style={boxStyle}>
+                                <i className="material-icons" style={boxIconStyle}>female</i>
                                 <p style={boxTextStyle}>Female</p>
                                 <h2 style={boxNumberStyle}>200</h2>
                             </div>
                             <div style={boxStyle}>
+                                <i className="material-icons" style={boxIconStyle}>how_to_vote</i>
                                 <p style={boxTextStyle}>Registered Voters</p>
                                 <h2 style={boxNumberStyle}>200</h2>
                             </div>
@@ -214,7 +218,8 @@ const boxStyle = {
     padding: '10px', 
     border: '1px solid #ddd', 
     borderRadius: '10px', 
-    marginBottom: '10px'
+    marginBottom: '10px',
+    position: 'relative' // Make the box position relative for the absolute positioning of icon
 };
 
 const boxTextStyle = {
@@ -225,7 +230,17 @@ const boxTextStyle = {
 const boxNumberStyle = {
     fontSize: '36px', 
     color: '#333', 
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop:'0',
+    marginBottom:'1.4em'
+};
+
+const boxIconStyle = {
+    fontSize: '36px',
+    color: '#333',
+    position: 'absolute', // Positioning the icon absolutely within the box
+    bottom: '10px', // Distance from the bottom of the box
+    left: '10px' // Distance from the left of the box
 };
 
 const tableContainerStyle = {
