@@ -56,8 +56,7 @@ export default function Resident() {
                         <label htmlFor="search" style={{ left: '48px' }}>Search Resident</label>
                     </div>
                     <button className="btn waves-effect waves-light" style={{ backgroundColor: '#1976d2', color: 'white' }}>
-                        <i className="material-icons left" style={{paddingRight:'4px', margin:'0'}}>add</i>
-                        Create
+                        <i className="material-icons">add</i>
                     </button>
                 </div>
 
