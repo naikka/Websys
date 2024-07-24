@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import 'materialize-css/dist/css/materialize.min.css'; // Materialize CSS
+import defaultimage from '../assets/defaultimage.png';
 
 export default function OfficialUnit() {
     const navigate = useNavigate();
@@ -60,7 +61,6 @@ export default function OfficialUnit() {
                     </button>
                 </div>
 
-
                 {/* Table Container */}
                 <div style={{ 
                     backgroundColor: 'white', 
@@ -71,17 +71,19 @@ export default function OfficialUnit() {
                     overflowY: 'auto' 
                 }}>
                     <table className="striped">
-                        <thead>
+                        <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1' }}>
                             <tr>
-                                <th style={{ width: '20%' }}>Name</th>
-                                <th style={{ width: '20%' }}>Position</th>
-                                <th style={{ width: '20%' }}>Birthday</th>
-                                <th style={{ width: '20%' }}>Sex</th>
-                                <th style={{ width: '20%' }}>Edit/Delete</th>
+                                <th style={{ width: '16%' }}>PICTURE</th>
+                                <th style={{ width: '16%' }}>NAME</th>
+                                <th style={{ width: '16%' }}>POSITION</th>
+                                <th style={{ width: '16%' }}>TERM FROM-TO</th>
+                                <th style={{ width: '16%' }}>PUROK</th>
+                                <th style={{ width: '20%' }}>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                                <td><img src={defaultimage} alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
                                 <td>John Doe</td>
                                 <td>Chairman</td>
                                 <td>01/01/1980</td>
@@ -96,6 +98,7 @@ export default function OfficialUnit() {
                                 </td>
                             </tr>
                             <tr>
+                                <td><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
                                 <td>Jane Smith</td>
                                 <td>Secretary</td>
                                 <td>02/02/1985</td>
