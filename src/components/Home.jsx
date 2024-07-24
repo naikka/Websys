@@ -44,7 +44,7 @@ export default function Home() {
     };
 
     return (
-        <div style={{ display: 'flex', height: '100vh' }}> {/* Full viewport height */}
+        <div style={{ display: 'flex', height: '100vh' }}>
             {/* SIDEBAR DASHBOARD */}
             <div style={{ 
                 width: isSidebarOpen ? '280px' : '80px', 
@@ -55,7 +55,7 @@ export default function Home() {
                 alignItems: 'center', 
                 paddingTop: '2rem', 
                 transition: 'width 0.3s',
-                height: '100%' // Make sidebar fill height
+                height: '100vh'
             }}>
                 <button 
                     onClick={toggleSidebar} 
@@ -117,7 +117,7 @@ export default function Home() {
 
             <div style={{ flex: 1, backgroundColor: '#f5f5f5', display: 'flex', flexDirection: 'column' }}>
                 {/* HEADER */}
-                <div style={{ height: '200px', backgroundColor: '#efebe9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+                <div style={{ minHeight: '60px', backgroundColor: '#efebe9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: '4rem' }}>
                         <i className="material-icons" style={{ color: '#1976d2', fontSize: '26px', marginRight: '1rem' }}>person</i>
                         <a href="/admin" style={{ color: '#1976d2', fontSize: '20px', textDecoration: 'none' }}>Admin</a>
@@ -125,7 +125,7 @@ export default function Home() {
                 </div>
 
                 {/* MAIN CONTENT */}
-                <div style={{ flex: 1, padding: '20px', display: 'flex' }}>
+                <div style={{ flex: 1, padding: '20px', display: 'flex',maxHeight: '90vh', overflowY: 'auto' }}>
                     <div style={{ width: '70%', marginRight: '20px', display: 'flex', flexDirection: 'column' }}>
                         <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginTop:'4px', marginBottom:'24px'}}>Dashboard</h2>
                         <h3 style={{ color: '#333', fontSize: '20px', marginBottom: '20px', marginTop:'0'}}>Current Barangay Officials</h3>
@@ -281,9 +281,9 @@ const tableContainerStyle = {
     border: '1px solid #ddd',
     borderRadius: '8px',
     width: '100%',
-    height: '500px', // Fixed height for the table container
-    overflowY: 'auto', // Enable vertical scrolling
-    padding: '0', // Remove padding
+    height: '90vh', 
+    overflowY: 'auto', 
+    padding: '0', 
     backgroundColor: 'white',
 };
 
