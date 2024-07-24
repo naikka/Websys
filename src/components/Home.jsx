@@ -117,8 +117,7 @@ export default function Home() {
 
             <div style={{ flex: 1, backgroundColor: '#f5f5f5', display: 'flex', flexDirection: 'column' }}>
                 {/* HEADER */}
-                <div style={{ height: '60px', backgroundColor: '#efebe9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-                    <div style={{ width: '120px' }}></div>
+                <div style={{ height: '200px', backgroundColor: '#efebe9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: '4rem' }}>
                         <i className="material-icons" style={{ color: '#1976d2', fontSize: '26px', marginRight: '1rem' }}>person</i>
                         <a href="/admin" style={{ color: '#1976d2', fontSize: '20px', textDecoration: 'none' }}>Admin</a>
@@ -128,37 +127,70 @@ export default function Home() {
                 {/* MAIN CONTENT */}
                 <div style={{ flex: 1, padding: '20px', display: 'flex' }}>
                     <div style={{ width: '70%', marginRight: '20px', display: 'flex', flexDirection: 'column' }}>
-                        <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginBottom: '10px', marginTop:'0' }}>Dashboard</h2>
-                        <h3 style={{ color: '#333', fontSize: '20px', marginBottom: '20px', marginTop:'0',marginTop:'4rem' }}>Current Barangay Officials</h3>
+                        <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginTop:'4px', marginBottom:'24px'}}>Dashboard</h2>
+                        <h3 style={{ color: '#333', fontSize: '20px', marginBottom: '20px', marginTop:'0'}}>Current Barangay Officials</h3>
                         <div style={tableContainerStyle}>
                             <table className="table table-striped" style={{ width: '100%', marginBottom: '0', tableLayout: 'auto' }}>
                                 <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1' }}>
                                     <tr>
-                                        <th>Picture</th>
-                                        <th>Name</th>
-                                        <th>Position</th>
+                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>PICTURE</th>
+                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>NAME</th>
+                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>POSITION</th>
+                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>TERM FROM-TO</th>
+                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>PUROK</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr style={tableRowStyle}>
-                                        <td><img src={defaultimage} alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
-                                        <td>Juan Dela Cruz</td>
-                                        <td>Position of Official 1</td>
+                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
+                                        <td style={tableCellStyle}>Juan Dela Cruz</td>
+                                        <td style={tableCellStyle}>Position of Official 1</td>
+                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
+                                        <td style={tableCellStyle}>Purok 1</td>
+
                                     </tr>
                                     <tr style={tableRowStyle}>
-                                        <td><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
-                                        <td>Official 2</td>
-                                        <td>Position of Official 2</td>
+                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
+                                        <td style={tableCellStyle}>Official 2</td>
+                                        <td style={tableCellStyle}>Position of Official 2</td>
+                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
+                                        <td style={tableCellStyle}>Purok 1</td>
                                     </tr>
                                     <tr style={tableRowStyle}>
-                                        <td><img src={defaultimage} alt="Official 3" style={{ height: '100px', width: 'auto' }} /></td>
-                                        <td>Official 3</td>
-                                        <td>Position of Official 3</td>
+                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
+                                        <td style={tableCellStyle}>Official 2</td>
+                                        <td style={tableCellStyle}>Position of Official 2</td>
+                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
+                                        <td style={tableCellStyle}>Purok 1</td>
                                     </tr>
                                     <tr style={tableRowStyle}>
-                                        <td><img src={defaultimage} alt="Official 4" style={{ height: '100px', width: 'auto' }} /></td>
-                                        <td>Official 4</td>
-                                        <td>Position of Official 4</td>
+                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 3" style={{ height: '100px', width: 'auto' }} /></td>
+                                        <td style={tableCellStyle}>Official 3</td>
+                                        <td style={tableCellStyle}>Position of Official 3</td>
+                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
+                                        <td style={tableCellStyle}>Purok 1</td>
+                                    </tr>
+                                    <tr style={tableRowStyle}>
+                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 4" style={{ height: '100px', width: 'auto' }} /></td>
+                                        <td style={tableCellStyle}>Official 4</td>
+                                        <td style={tableCellStyle}>Position of Official 4</td>
+                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
+                                        <td style={tableCellStyle}>Purok 1</td>
+                                    </tr>
+                                    <tr style={tableRowStyle}>
+                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 4" style={{ height: '100px', width: 'auto' }} /></td>
+                                        <td style={tableCellStyle}>Official 4</td>
+                                        <td style={tableCellStyle}>Position of Official 4</td>
+                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
+                                        <td style={tableCellStyle}>Purok 1</td>
+                                    </tr>
+                                    <tr style={tableRowStyle}>
+                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 4" style={{ height: '100px', width: 'auto' }} /></td>
+                                        <td style={tableCellStyle}>Official 4</td>
+                                        <td style={tableCellStyle}>Position of Official 4</td>
+                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
+                                        <td style={tableCellStyle}>Purok 1</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -248,13 +280,19 @@ const boxIconStyle = {
 const tableContainerStyle = {
     border: '1px solid #ddd',
     borderRadius: '8px',
-    width: '100%', 
-    height: '100%',
-    overflowY: 'scroll',
-    padding: '10px',
+    width: '100%',
+    height: '500px', // Fixed height for the table container
+    overflowY: 'auto', // Enable vertical scrolling
+    padding: '0', // Remove padding
     backgroundColor: 'white',
 };
 
+
 const tableRowStyle = {
     height: '20px' 
+};
+const tableCellStyle = {
+    textAlign: 'center',
+    padding: '10px',
+
 };

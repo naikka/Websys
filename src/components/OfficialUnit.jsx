@@ -70,25 +70,25 @@ export default function OfficialUnit() {
                     maxHeight: '70vh', 
                     overflowY: 'auto' 
                 }}>
-                    <table className="striped">
+                    <table className="striped" style={{ width: '100%', borderCollapse: 'collapse' }}>
                         <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1' }}>
                             <tr>
-                                <th style={{ width: '16%' }}>PICTURE</th>
-                                <th style={{ width: '16%' }}>NAME</th>
-                                <th style={{ width: '16%' }}>POSITION</th>
-                                <th style={{ width: '16%' }}>TERM FROM-TO</th>
-                                <th style={{ width: '16%' }}>PUROK</th>
-                                <th style={{ width: '20%' }}>ACTION</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>PICTURE</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>NAME</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>POSITION</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>TERM FROM-TO</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>PUROK</th>
+                                <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><img src={defaultimage} alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
-                                <td>John Doe</td>
-                                <td>Chairman</td>
-                                <td>01/01/1980</td>
-                                <td>Male</td>
-                                <td>
+                                <td style={{ textAlign: 'center' }}><img src={defaultimage} alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
+                                <td style={{ textAlign: 'center' }}>John Doe</td>
+                                <td style={{ textAlign: 'center' }}>Chairman</td>
+                                <td style={{ textAlign: 'center' }}>01/01/1980</td>
+                                <td style={{ textAlign: 'center' }}>Male</td>
+                                <td style={{ textAlign: 'center' }}>
                                     <button className="btn-flat">
                                         <i className="material-icons">edit</i>
                                     </button>
@@ -98,12 +98,12 @@ export default function OfficialUnit() {
                                 </td>
                             </tr>
                             <tr>
-                                <td><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
-                                <td>Jane Smith</td>
-                                <td>Secretary</td>
-                                <td>02/02/1985</td>
-                                <td>Female</td>
-                                <td>
+                                <td style={{ textAlign: 'center' }}><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
+                                <td style={{ textAlign: 'center' }}>Jane Smith</td>
+                                <td style={{ textAlign: 'center' }}>Secretary</td>
+                                <td style={{ textAlign: 'center' }}>02/02/1985</td>
+                                <td style={{ textAlign: 'center' }}>Female</td>
+                                <td style={{ textAlign: 'center' }}>
                                     <button className="btn-flat">
                                         <i className="material-icons">edit</i>
                                     </button>
