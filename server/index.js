@@ -2,25 +2,20 @@
 const express = require("express")
 const cors = require("cors")
 const mysql = require("mysql")
+const path = require("path")
 const app = express()
 
-app.use(cors());
+
+const port = 5000
 
 const db = mysql.createConnection({
     host:"localhost",
     user:"root",
-    password:"",
+    password:"naika352088",
     database:"websysdb",
 })
 
-app.get("/", (req, res) => {
-    const sql = "SELECT * FROM officialtable";
-    db.query(sql, (err,data)=>{
-        if(err) return res .json("Error")
-            return res.json(data);
-    })
-})
 
-app.listen(8082, () =>{
+app.listen(port, () =>{
     console.log("Server is running");
 })
