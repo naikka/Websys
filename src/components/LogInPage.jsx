@@ -13,7 +13,7 @@ export default function LogInPage() {
 
     return (
         <>
-            <div className='container' style={{ height: '100vh' }}>
+            <div className='container' style={{ height: '100vh', width:'100%' }}>
                 <div className='row h-100'>
                     <div className='col-sm-12 col-md-12 col-lg-12 p-5 d-flex align-items-center'>
                         <div className='p-5 d-flex justify-content-start'>
@@ -31,7 +31,7 @@ export default function LogInPage() {
                     <div className='col-12 d-flex justify-content-center'>
                         <div className='col-12 col-md-6 p-5 d-flex align-items-center justify-content-center'>
                             <form className='w-100' style={{ maxWidth: '400px', margin: 'auto', border: '1px solid #ccc', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
-                                <h3 className='text-center mb-4' style={{fontSize:'2rem', fontStyle:'normal'}}>Welcome Back!</h3>
+                                <h3 className='text-center mb-4' style={{fontSize:'1.5rem', fontStyle:'normal',marginTop:'1em'}}>Welcome Back!</h3>
                                 <input className='form-control mb-2'  placeholder='Username' style={{ fontSize: '1.2rem'}} />
                                 <input className='form-control mb-4'  type='password' placeholder='Password' style={{ fontSize: '1.2rem'}} />
                                 <div className='d-grid gap-2'>
