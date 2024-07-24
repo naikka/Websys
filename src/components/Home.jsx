@@ -136,8 +136,8 @@ export default function Home() {
                                     <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>PICTURE</th>
                                     <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>NAME</th>
                                     <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>POSITION</th>
-                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>TERM FROM-TO</th>
-                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>PUROK</th>
+                                    
+                                    
 
                                     </tr>
                                 </thead>
@@ -146,51 +146,48 @@ export default function Home() {
                                         <td style={tableCellStyle}><img src={defaultimage} alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
                                         <td style={tableCellStyle}>Juan Dela Cruz</td>
                                         <td style={tableCellStyle}>Position of Official 1</td>
-                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
-                                        <td style={tableCellStyle}>Purok 1</td>
+                                        
+                                    
 
                                     </tr>
                                     <tr style={tableRowStyle}>
                                         <td style={tableCellStyle}><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
                                         <td style={tableCellStyle}>Official 2</td>
                                         <td style={tableCellStyle}>Position of Official 2</td>
-                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
-                                        <td style={tableCellStyle}>Purok 1</td>
+                                        
+                                        
                                     </tr>
                                     <tr style={tableRowStyle}>
                                         <td style={tableCellStyle}><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
                                         <td style={tableCellStyle}>Official 2</td>
                                         <td style={tableCellStyle}>Position of Official 2</td>
-                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
-                                        <td style={tableCellStyle}>Purok 1</td>
+                                        
+                                        
                                     </tr>
                                     <tr style={tableRowStyle}>
                                         <td style={tableCellStyle}><img src={defaultimage} alt="Official 3" style={{ height: '100px', width: 'auto' }} /></td>
                                         <td style={tableCellStyle}>Official 3</td>
                                         <td style={tableCellStyle}>Position of Official 3</td>
-                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
-                                        <td style={tableCellStyle}>Purok 1</td>
+                                        
+                                        
                                     </tr>
                                     <tr style={tableRowStyle}>
                                         <td style={tableCellStyle}><img src={defaultimage} alt="Official 4" style={{ height: '100px', width: 'auto' }} /></td>
                                         <td style={tableCellStyle}>Official 4</td>
                                         <td style={tableCellStyle}>Position of Official 4</td>
-                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
-                                        <td style={tableCellStyle}>Purok 1</td>
+                                        
                                     </tr>
                                     <tr style={tableRowStyle}>
                                         <td style={tableCellStyle}><img src={defaultimage} alt="Official 4" style={{ height: '100px', width: 'auto' }} /></td>
                                         <td style={tableCellStyle}>Official 4</td>
                                         <td style={tableCellStyle}>Position of Official 4</td>
-                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
-                                        <td style={tableCellStyle}>Purok 1</td>
+                                        
                                     </tr>
                                     <tr style={tableRowStyle}>
                                         <td style={tableCellStyle}><img src={defaultimage} alt="Official 4" style={{ height: '100px', width: 'auto' }} /></td>
                                         <td style={tableCellStyle}>Official 4</td>
                                         <td style={tableCellStyle}>Position of Official 4</td>
-                                        <td style={tableCellStyle}>Dec 8, 2023 - Dec 9,2025</td>
-                                        <td style={tableCellStyle}>Purok 1</td>
+                                        
                                     </tr>
                                 </tbody>
                             </table>

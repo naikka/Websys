@@ -14,10 +14,9 @@ const db = mysql.createConnection({
 })
 
 app.get("/", (req, res) => {
-    res.json("Hello From Backend");
     const sql = "SELECT * FROM officialtable";
     db.query(sql, (err,data)=>{
-        if(err) return app.json("Error")
+        if(err) return res .json("Error")
             return res.json(data);
     })
 })

@@ -76,8 +76,7 @@ export default function OfficialUnit() {
                                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>PICTURE</th>
                                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>NAME</th>
                                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>POSITION</th>
-                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>TERM FROM-TO</th>
-                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>PUROK</th>
+                                
                                 <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>ACTION</th>
                             </tr>
                         </thead>
@@ -86,8 +85,7 @@ export default function OfficialUnit() {
                                 <td style={{ textAlign: 'center' }}><img src={defaultimage} alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
                                 <td style={{ textAlign: 'center' }}>John Doe</td>
                                 <td style={{ textAlign: 'center' }}>Chairman</td>
-                                <td style={{ textAlign: 'center' }}>01/01/1980</td>
-                                <td style={{ textAlign: 'center' }}>Male</td>
+                                
                                 <td style={{ textAlign: 'center' }}>
                                     <button className="btn-flat">
                                         <i className="material-icons">edit</i>
@@ -101,8 +99,7 @@ export default function OfficialUnit() {
                                 <td style={{ textAlign: 'center' }}><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
                                 <td style={{ textAlign: 'center' }}>Jane Smith</td>
                                 <td style={{ textAlign: 'center' }}>Secretary</td>
-                                <td style={{ textAlign: 'center' }}>02/02/1985</td>
-                                <td style={{ textAlign: 'center' }}>Female</td>
+                                
                                 <td style={{ textAlign: 'center' }}>
                                     <button className="btn-flat">
                                         <i className="material-icons">edit</i>
