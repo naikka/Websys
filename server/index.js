@@ -1,22 +1,10 @@
-const express = require ('express')
-const mongoose = require ('mongoose')
-const userModel = require('./models/Users')
-
-const cors = require('cors')
-
-const app = express()
-app.use(cors())
-app.use(express.json())
+const express = require('express');
+const cors = require('cors');
+const mysql = require('mysql');
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/websystemdb/")
-
-app.post("/officialCreate", (req, res) => {
-    userModel.create(req.body)
-        .then(users => res.json(users))
-        .catch(err => res.json(err));
-});
+const app = express();
 
 app.listen(3002, () => {
-    console.log('Server is running')
-})
+  console.log('Server is running');
+});

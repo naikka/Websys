@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import 'materialize-css/dist/css/materialize.min.css'; // Materialize CSS
-import defaultimage from '../assets/defaultimage.png';
+
 
 export default function OfficialUnit() {
+   
     const navigate = useNavigate();
-
+    const [data, setData] = useState([]);
     const handleGoBack = () => {
         navigate(-1); // Navigate to the previous page
     };
 
-    const [user, setUser] = useState([{
 
-        Picture:{defaultimage}, Name: "Micah", Position: "Kagawad"
-    }])
+    useEffect(()=> {
+        fetch('http://localhost:3002/official')
+        .then( res => res.json())
+        .then(data => setData(data))
+        .catch(err => console.log(err));
+    }, [])
 
     return (
         <div style={{ height: '100vh' }}>
@@ -61,10 +65,9 @@ export default function OfficialUnit() {
                         <input id="search" type="text" style={{ maxWidth: '300px', marginBottom: '0' }} />
                         <label htmlFor="search" style={{ left: '48px' }}>Search Barangay Official</label>
                     </div>
-                    <Link to="/officialCreate"><button className="btn waves-effect waves-light" style={{ backgroundColor: '#1976d2', color: 'white' }}>
+                    <button className="btn waves-effect waves-light" style={{ backgroundColor: '#1976d2', color: 'white' }}>
                         <i className="material-icons">add</i>
                     </button>
-                    </Link>
                 </div>
 
                 {/* Table Container */}
@@ -79,34 +82,29 @@ export default function OfficialUnit() {
                     <table className="striped" style={{ width: '100%', borderCollapse: 'collapse' }}>
                         <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1' }}>
                             <tr>
-                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>PICTURE</th>
-                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>NAME</th>
-                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>POSITION</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Name</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Position</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Contact</th>
                                 
-                                <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>ACTION</th>
+                                <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                        {
-                            user.map((user) => {
-                            return ( <tr>
-                                        <td style={{ textAlign: 'center' }}><img src={user.Picture.defaultimage}style={{ height: '100px', width: 'auto' }} alt="Official Picture" />
-                                        </td>
-                                        <td style={{ textAlign: 'center' }}>{user.Name}</td>
-                                        <td style={{ textAlign: 'center' }}>{user.Position}</td>
-                                        
-                                        <td style={{ textAlign: 'center' }}>
-                                        <Link to="/officialUpdate"><button className="btn-flat">
-                                                <i className="material-icons">edit</i>
-                                            </button> </Link>
-                                            <button className="btn-flat">
-                                                <i className="material-icons">delete</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                );
-                            })
-                        }
+                        {data.map((item, index) => (
+                            <tr key={index}>
+                                <td style={{ textAlign: 'center' }}>{item.name}</td>
+                                <td style={{ textAlign: 'center' }}>{item.position}</td>
+                                <td style={{ textAlign: 'center' }}>{item.contact}</td>
+                                <td style={{ textAlign: 'center' }}>
+                                <button className="btn-flat">
+                                    <i className="material-icons">edit</i>
+                                </button>
+                                <button className="btn-flat">
+                                    <i className="material-icons">delete</i>
+                                </button>
+                                </td>
+                            </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

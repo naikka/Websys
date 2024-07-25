@@ -57,12 +57,12 @@ export default function OfficialUpdate() {
                         </div>
                         <div className="mt-auto">
                             <div className="mb-3">
-                                <label htmlFor="picture" className="form-label">Picture</label>
+                                <label htmlFor="contact" className="form-label">Contact</label>
                                 <input 
-                                    type="file" 
+                                    type="text" 
                                     className="form-control" 
-                                    id="picture" 
-                                    name="picture" 
+                                    id="contact" 
+                                    name="contact" 
                                 />
                             </div>
                             <button type="submit" className="btn btn-success w-100">
