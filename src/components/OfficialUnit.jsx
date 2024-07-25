@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import 'materialize-css/dist/css/materialize.min.css'; // Materialize CSS
@@ -11,6 +11,11 @@ export default function OfficialUnit() {
     const handleGoBack = () => {
         navigate(-1); // Navigate to the previous page
     };
+
+    const [user, setUser] = useState([{
+
+        Picture:{defaultimage}, Name: "Micah", Position: "Kagawad"
+    }])
 
     return (
         <div style={{ height: '100vh' }}>
@@ -56,9 +61,10 @@ export default function OfficialUnit() {
                         <input id="search" type="text" style={{ maxWidth: '300px', marginBottom: '0' }} />
                         <label htmlFor="search" style={{ left: '48px' }}>Search Barangay Official</label>
                     </div>
-                    <button className="btn waves-effect waves-light" style={{ backgroundColor: '#1976d2', color: 'white' }}>
+                    <Link to="/officialCreate"><button className="btn waves-effect waves-light" style={{ backgroundColor: '#1976d2', color: 'white' }}>
                         <i className="material-icons">add</i>
                     </button>
+                    </Link>
                 </div>
 
                 {/* Table Container */}
@@ -81,35 +87,26 @@ export default function OfficialUnit() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td style={{ textAlign: 'center' }}><img src={defaultimage} alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
-                                <td style={{ textAlign: 'center' }}>John Doe</td>
-                                <td style={{ textAlign: 'center' }}>Chairman</td>
-                                
-                                <td style={{ textAlign: 'center' }}>
-                                    <button className="btn-flat">
-                                        <i className="material-icons">edit</i>
-                                    </button>
-                                    <button className="btn-flat">
-                                        <i className="material-icons">delete</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style={{ textAlign: 'center' }}><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
-                                <td style={{ textAlign: 'center' }}>Jane Smith</td>
-                                <td style={{ textAlign: 'center' }}>Secretary</td>
-                                
-                                <td style={{ textAlign: 'center' }}>
-                                    <button className="btn-flat">
-                                        <i className="material-icons">edit</i>
-                                    </button>
-                                    <button className="btn-flat">
-                                        <i className="material-icons">delete</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            {/* Add more rows as needed */}
+                        {
+                            user.map((user) => {
+                            return ( <tr>
+                                        <td style={{ textAlign: 'center' }}><img src={user.Picture.defaultimage}style={{ height: '100px', width: 'auto' }} alt="Official Picture" />
+                                        </td>
+                                        <td style={{ textAlign: 'center' }}>{user.Name}</td>
+                                        <td style={{ textAlign: 'center' }}>{user.Position}</td>
+                                        
+                                        <td style={{ textAlign: 'center' }}>
+                                        <Link to="/officialUpdate"><button className="btn-flat">
+                                                <i className="material-icons">edit</i>
+                                            </button> </Link>
+                                            <button className="btn-flat">
+                                                <i className="material-icons">delete</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                        }
                         </tbody>
                     </table>
                 </div>

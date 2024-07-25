@@ -5,10 +5,20 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import pasonglogos from '../assets/pasonglogos.png'; // Path to Pasong logo image
 import defaultimage from '../assets/defaultimage.png'; // Default image for officials
 
+
+
 export default function Home() {
     const navigate = useNavigate();
     const [isSidebarOpen, setSidebarOpen] = useState(true);
     const [currentTime, setCurrentTime] = useState(new Date());
+
+    const [user, setUser] = useState([{
+
+        Picture:{defaultimage}, Name: "Micah", Position: "Kagawad"
+    }])
+
+
+
 
     const handleLoginClick = (type) => {
         if (type === 'dashboard') {
@@ -142,53 +152,18 @@ export default function Home() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr style={tableRowStyle}>
-                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
-                                        <td style={tableCellStyle}>Juan Dela Cruz</td>
-                                        <td style={tableCellStyle}>Position of Official 1</td>
-                                        
-                                    
+                                    {
+                                        user.map((user)=>{
+                                        return <tr style={tableRowStyle}>
+                                            <td style={tableCellStyle}><img src={defaultimage} alt="Official 1" style={{ height: '100px', width: 'auto' }} /></td>
+                                            <td style={tableCellStyle}>Juan Dela Cruz</td>
+                                            <td style={tableCellStyle}>Position of Official 1</td>
+                                        </tr>
 
-                                    </tr>
-                                    <tr style={tableRowStyle}>
-                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
-                                        <td style={tableCellStyle}>Official 2</td>
-                                        <td style={tableCellStyle}>Position of Official 2</td>
-                                        
-                                        
-                                    </tr>
-                                    <tr style={tableRowStyle}>
-                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 2" style={{ height: '100px', width: 'auto' }} /></td>
-                                        <td style={tableCellStyle}>Official 2</td>
-                                        <td style={tableCellStyle}>Position of Official 2</td>
-                                        
-                                        
-                                    </tr>
-                                    <tr style={tableRowStyle}>
-                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 3" style={{ height: '100px', width: 'auto' }} /></td>
-                                        <td style={tableCellStyle}>Official 3</td>
-                                        <td style={tableCellStyle}>Position of Official 3</td>
-                                        
-                                        
-                                    </tr>
-                                    <tr style={tableRowStyle}>
-                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 4" style={{ height: '100px', width: 'auto' }} /></td>
-                                        <td style={tableCellStyle}>Official 4</td>
-                                        <td style={tableCellStyle}>Position of Official 4</td>
-                                        
-                                    </tr>
-                                    <tr style={tableRowStyle}>
-                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 4" style={{ height: '100px', width: 'auto' }} /></td>
-                                        <td style={tableCellStyle}>Official 4</td>
-                                        <td style={tableCellStyle}>Position of Official 4</td>
-                                        
-                                    </tr>
-                                    <tr style={tableRowStyle}>
-                                        <td style={tableCellStyle}><img src={defaultimage} alt="Official 4" style={{ height: '100px', width: 'auto' }} /></td>
-                                        <td style={tableCellStyle}>Official 4</td>
-                                        <td style={tableCellStyle}>Position of Official 4</td>
-                                        
-                                    </tr>
+                                        })
+                                    }
+                                    
+                                    
                                 </tbody>
                             </table>
                         </div>
