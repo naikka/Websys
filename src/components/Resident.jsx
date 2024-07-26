@@ -107,7 +107,7 @@ export default function Resident() {
 
       {/* MAIN CONTENT */}
       <div style={{ padding: '20px', backgroundColor: '#f5f5f5', height: 'calc(100vh - 80px)', overflowY: 'auto' }}>
-        <h3 style={{ fontSize: '24px', marginTop: '0', color:'#1976d2' }}>RESIDENT LIST</h3>
+        <h3 style={{ fontSize: '24px', marginTop: '0', color:'#1976d2', fontWeight:'bold' }}>RESIDENT LIST</h3>
         
         {/* Search Bar */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 20px', padding: '10px 0' }}>

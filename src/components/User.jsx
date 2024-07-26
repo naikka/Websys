@@ -78,7 +78,7 @@ export default function User() {
             {/* MAIN CONTENT */}
             <div style={{ padding: '20px', backgroundColor: '#f5f5f5' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
-                    <h2 style={{ fontSize: '24px', marginLeft: '25rem', marginTop: '6px' }}>Manage Users</h2>
+                    <h2 style={{ fontSize: '24px', marginLeft: '25rem', marginTop: '6px', fontWeight:'bold', color:'#1976d2'  }}>MANAGE USERS</h2>
                     <button 
                         onClick={handleAddUser}
                         style={{ 
@@ -112,8 +112,8 @@ export default function User() {
                     <table className="striped" style={{ width: '100%', marginBottom: '0', tableLayout: 'auto' }}>
                         <thead style={{ position: 'sticky', top: '0', marginTop: '0', backgroundColor: 'white', zIndex: '1' }}>
                             <tr>
-                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>User</th>
-                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Actions</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>User</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>Actions</th>
                             </tr>
                         </thead>
                         <tbody>

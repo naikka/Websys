@@ -139,17 +139,17 @@ export default function Home() {
                 </div>
 
                 {/* MAIN CONTENT */}
-                <div style={{ flex: 1, padding: '20px', display: 'flex',maxHeight: '90vh', overflowY: 'auto' }}>
+                <div style={{ flex: 1, padding: '20px', display: 'flex', Height: '100vh', overflowY: 'auto' }}>
                     <div style={{ width: '70%', marginRight: '20px', display: 'flex', flexDirection: 'column' }}>
-                        <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginTop:'4px', marginBottom:'24px'}}>Dashboard</h2>
+                        <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginTop:'4px', marginBottom:'24px', color:'#1976d2'}}>Dashboard</h2>
                         <h3 style={{ color: '#333', fontSize: '20px', marginBottom: '20px', marginTop:'0'}}>Current Barangay Officials</h3>
                         <div style={tableContainerStyle}>
                             <table className="table table-striped" style={{ width: '100%', marginBottom: '0', tableLayout: 'auto' }}>
                                 <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1' }}>
                                     <tr>
-                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Name</th>
-                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Position</th>
-                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Contact</th>
+                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>Name</th>
+                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>Position</th>
+                                    <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>Contact</th>
 
                                     </tr>
                                 </thead>
@@ -168,7 +168,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div style={{ width: '30%', display: 'flex', flexDirection: 'column' }}>
-                        <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginBottom: '20px', marginTop:'0' }}>Residents Record Summary</h2>
+                        <h2 style={{ color: '#333', fontSize: '22px', fontWeight: 'bold', marginBottom: '20px', marginTop:'0', color:'#1976d2' }}>RESIDENTS RECORD SUMMARY</h2>
                         <div style={{ display: 'flex', flexDirection: 'column', position: 'relative', flex: 1 }}>
                             <div style={boxStyle}>
                                 <i className="material-icons" style={boxIconStyle}>people</i>
@@ -252,7 +252,7 @@ const tableContainerStyle = {
     border: '1px solid #ddd',
     borderRadius: '8px',
     width: '100%',
-    height: '90vh', 
+    height: '80vh', 
     overflowY: 'auto', 
     padding: '0', 
     backgroundColor: 'white',
