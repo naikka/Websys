@@ -13,17 +13,22 @@ export default function OfficialCreate() {
     const [error, setError] = useState(null);
 
     const handleGoBack = () => {
-        navigate(-1);
+        navigate("/officialUnit");
     };
 
-    const addOfficial = () => {
+    const addOfficial = (event) => {
+        event.preventDefault();
         Axios.post('http://localhost:3002/createOfficial', {
             name: name, 
             position: position, 
             contact: contact
         }).then(() => {
-            console.log("success")
-        })
+            console.log("success");
+            navigate('/officialUnit'); // Navigate to officialUnit page
+        }).catch((error) => {
+            setError("Failed to create official. Please try again.");
+            console.error(error);
+        });
     };
 
     return (
@@ -32,7 +37,8 @@ export default function OfficialCreate() {
             <header className="d-flex align-items-center bg-light shadow-sm p-3">
                 <button 
                     onClick={handleGoBack} 
-                    className="btn btn-link d-flex align-items-center "style={{ color: '#ffffff' }}
+                    className="btn btn-link d-flex align-items-center" 
+                    style={{ color: '#ffffff' }}
                 >
                     <i className="material-icons">arrow_back</i>
                     <span className="ms-2">Back</span>
@@ -48,7 +54,7 @@ export default function OfficialCreate() {
                 <h3 className="mb-4">Create Official</h3>
 
                 <div className="bg-white p-4 rounded shadow-sm w-100" style={{ maxWidth: '600px' }}>
-                    <form>
+                    <form onSubmit={addOfficial}>
                         <div className="mb-3">
                             <label htmlFor="name" className="form-label">Name</label>
                             <input 
@@ -58,7 +64,7 @@ export default function OfficialCreate() {
                                 name="name" 
                                 required 
                                 value={name}
-                                require onChange={(e) => setName(e.target.value)}
+                                onChange={(e) => setName(e.target.value)}
                             />
                         </div>
                         <div className="mb-3">
@@ -70,7 +76,7 @@ export default function OfficialCreate() {
                                 name="position" 
                                 required 
                                 value={position}
-                                require onChange={(e) => setPosition(e.target.value)}
+                                onChange={(e) => setPosition(e.target.value)}
                             />
                         </div>
                         <div className="mb-3">
@@ -91,7 +97,7 @@ export default function OfficialCreate() {
                                 </div>
                             </div>
                         )}
-                        <button onClick={addOfficial} type="submit" className="btn btn-success ">
+                        <button type="submit" className="btn btn-success">
                             Save
                         </button>
                     </form>

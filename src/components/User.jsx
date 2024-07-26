@@ -1,20 +1,52 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import 'materialize-css/dist/css/materialize.min.css'; // Materialize CSS
+import axios from 'axios';
 
 export default function User() {
     const navigate = useNavigate();
-
     const handleGoBack = () => {
-        navigate(-1); // Navigate to the previous page
+        navigate("/home"); 
     };
+
+    const [userList, setUserList] = useState([]);
+
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+
+    const fetchUsers = () => {
+        axios.get('http://localhost:3002/users')
+          .then(response => {
+            setUserList(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+    };
+
+    const deleteUser = (userid) => {
+        axios.delete(`http://localhost:3002/deleteUser/${userid}`)
+          .then(response => {
+            console.log(response);
+            setUserList(userList.filter(item => item.userid !== userid));
+          })
+          .catch(error => {
+            console.error(error);
+          });
+    };
+
+    const handleAddUser = () => {
+        navigate('/createUser'); // Assuming this is the route for creating a new user
+    };
+
     return (
         <div style={{ height: '100vh' }}>
             {/* HEADER */}
             <div style={{ 
-                height: '80px', 
+                height: '10vh', 
                 backgroundColor: '#efebe9', 
                 display: 'flex', 
                 alignItems: 'center', 
@@ -46,8 +78,9 @@ export default function User() {
             {/* MAIN CONTENT */}
             <div style={{ padding: '20px', backgroundColor: '#f5f5f5' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
-                    <h2 style={{ fontSize: '32px', marginLeft: '5rem', marginTop:'6px'}}>Manage Users</h2>
+                    <h2 style={{ fontSize: '24px', marginLeft: '25rem', marginTop: '6px' }}>Manage Users</h2>
                     <button 
+                        onClick={handleAddUser}
                         style={{ 
                             backgroundColor: '#0d47a1', 
                             color: 'white', 
@@ -57,43 +90,63 @@ export default function User() {
                             alignItems: 'center', 
                             padding: '8px 12px', 
                             borderRadius: '4px', 
-                            marginRight:'5em'
+                            marginRight: '25em'
                         }}
                     >
                         <i className="material-icons">add</i>
                     </button>
                 </div>
-                <div style={tableContainerStyle}>
-                    <table className="table table-striped" style={{ width: '90%', margin: '0 auto', tableLayout: 'auto' }}>
-                        <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1' }}>
+                <div style={{ 
+                    backgroundColor: 'white',
+                    border: '1px solid #ddd', 
+                    padding: '0', 
+                    borderRadius: '8px', 
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+                    height: '78vh',
+                    width: '50%',
+                    margin: 'auto', 
+                    overflowY: 'auto',
+                    display: 'flex',
+                    flexDirection: 'column'  
+                }}>
+                    <table className="striped" style={{ width: '100%', marginBottom: '0', tableLayout: 'auto' }}>
+                        <thead style={{ position: 'sticky', top: '0', marginTop: '0', backgroundColor: 'white', zIndex: '1' }}>
                             <tr>
-                                <th style={{ textAlign: 'center' }}>User</th>
-                                <th style={{ textAlign: 'center' }}>Actions</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>User</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr style={{ height: '20px' }}>
-                                <td style={{ textAlign: 'center' }}>John Doe</td>
-                                <td style={{ textAlign: 'center' }}>
-                                    <button style={actionButtonStyle}>
-                                        <i className="material-icons">edit</i>
-                                    </button>
-                                    <button style={actionButtonStyle}>
-                                        <i className="material-icons">delete</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr style={{ height: '20px' }}>
-                                <td style={{ textAlign: 'center' }}>Jane Smith</td>
-                                <td style={{ textAlign: 'center' }}>
-                                    <button style={actionButtonStyle}>
-                                        <i className="material-icons">edit</i>
-                                    </button>
-                                    <button style={actionButtonStyle}>
-                                        <i className="material-icons">delete</i>
-                                    </button>
-                                </td>
-                            </tr>
+                            {userList.map((val, key) => (
+                                <tr key={key}>
+                                    <td style={{ textAlign: 'center' }}>{val.username}</td>
+                                    <td style={{ textAlign: 'center' }}>
+                                        <Link to="/updateUser">
+                                            <button style={{
+                                                backgroundColor: 'transparent',
+                                                border: 'none',
+                                                color: '#1976d2',
+                                                cursor: 'pointer',
+                                                padding: '8px',
+                                                marginRight: '5px'
+                                            }}>
+                                                <i className="material-icons">edit</i>
+                                            </button>
+                                        </Link>
+
+                                        <button onClick={() => deleteUser(val.userid)} style={{
+                                            backgroundColor: 'transparent',
+                                            border: 'none',
+                                            color: 'red',
+                                            cursor: 'pointer',
+                                            padding: '8px',
+                                            marginRight: '5px'
+                                        }}>
+                                            <i className="material-icons">delete</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -101,24 +154,3 @@ export default function User() {
         </div>
     );
 }
-
-// Styles for the action buttons and table container
-const actionButtonStyle = {
-    backgroundColor: 'transparent',
-    border: 'none',
-    color: '#1976d2',
-    cursor: 'pointer',
-    padding: '8px',
-    marginRight: '5px'
-};
-
-const tableContainerStyle = {
-    border: '1px solid #ddd',
-    borderRadius: '8px',
-    width: '90%', // Set the width of the table container
-    margin: '0 auto', // Center the table container
-    height: '500px',
-    overflowY: 'scroll',
-    padding: '10px',
-    backgroundColor: 'white'
-};

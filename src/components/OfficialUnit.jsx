@@ -6,36 +6,64 @@ import 'materialize-css/dist/css/materialize.min.css'; // Materialize CSS
 import axios from 'axios';
 
 export default function OfficialUnit() {
-   
     const navigate = useNavigate();
-    const handleGoBack = () => {
-        navigate(-1); // Navigate to the previous page
-    };
-
-    const [officialList, setOfficialList] = useState([])
+    const [officialList, setOfficialList] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
+        // Fetch the initial list of officials
         axios.get('http://localhost:3002/officials')
-          .then(response => {
-            setOfficialList(response.data);
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      }, []);
+            .then(response => {
+                setOfficialList(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
 
-      const deleteOfficial = (id) => {
+    useEffect(() => {
+        // Fetch search results whenever the search query changes
+        if (searchQuery.trim() !== '') {
+            axios.get(`http://localhost:3002/search-officials`, {
+                params: { query: searchQuery }
+            })
+                .then(response => {
+                    setOfficialList(response.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        } else {
+            // If the search query is empty, fetch all officials
+            axios.get('http://localhost:3002/officials')
+                .then(response => {
+                    setOfficialList(response.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    }, [searchQuery]);
+
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const handleGoBack = () => {
+        navigate("/home"); // Navigate to the previous page
+    };
+
+    const deleteOfficial = (id) => {
         axios.delete(`http://localhost:3002/deleteresident/${id}`)
-         .then(response => {
-            console.log(response);
-            // Update the officialList state to remove the deleted item
-            setOfficialList(officialList.filter(item => item.id!== id));
-          })
-         .catch(error => {
-            console.error(error);
-          });
-      };
-
+            .then(response => {
+                console.log(response);
+                // Update the officialList state to remove the deleted item
+                setOfficialList(officialList.filter(item => item.id !== id));
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
 
     return (
         <div style={{ height: '100vh' }}>
@@ -72,18 +100,25 @@ export default function OfficialUnit() {
 
             {/* MAIN CONTENT */}
             <div style={{ padding: '20px', backgroundColor: '#f5f5f5', height: '90vh', overflowY: 'auto' }}>
-                <h3 style={{ fontSize: '24px', marginTop: '0' }}>Official Unit</h3>
+                <h3 style={{ fontSize: '24px', marginTop: '0', color:'#1976d2' }}>BARANGAY OFFICIALS</h3>
                 
                 {/* Search Bar */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 20px', padding: '0' }}>
                     <div className="input-field" style={{ display: 'flex', alignItems: 'center', marginRight: '20px' }}>
                         <i className="material-icons" style={{ marginRight: '20px' }}>search</i>
-                        <input id="search" type="text" style={{ maxWidth: '300px', marginBottom: '0' }} />
+                        <input 
+                            id="search" 
+                            type="text" 
+                            style={{ maxWidth: '300px', marginBottom: '0' }} 
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                        />
                         <label htmlFor="search" style={{ left: '48px' }}>Search Barangay Official</label>
                     </div>
-                    <Link to="/OfficialCreate" ><button className="btn waves-effect waves-light" style={{ backgroundColor: '#1976d2', color: 'white' }}>
-                        <i className="material-icons">add</i>
-                    </button>
+                    <Link to="/OfficialCreate">
+                        <button className="btn waves-effect waves-light" style={{ backgroundColor: '#1976d2', color: 'white' }}>
+                            <i className="material-icons">add</i>
+                        </button>
                     </Link>
                 </div>
 
@@ -102,30 +137,29 @@ export default function OfficialUnit() {
                     <table className="striped" style={{ width: '100%', marginBottom: '0', tableLayout: 'auto' }}>
                         <thead style={{ position: 'sticky', top: '0', marginTop:'0', backgroundColor: 'white', zIndex: '1' }}>
                             <tr>
-                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Name</th>
-                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Position</th>
-                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Contact</th>
-                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Action</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>Name</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Position</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Contact</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-
                         {officialList.map((val, key) => (
-                            <tr>
+                            <tr key={val.id}>
                                 <td style={{ textAlign: 'center' }}>{val.name}</td>
                                 <td style={{ textAlign: 'center' }}>{val.position}</td>
                                 <td style={{ textAlign: 'center' }}>{val.contact}</td>
                                 <td style={{ textAlign: 'center' }}>
-                                <Link to="/OfficialUpdate"><button className="btn-flat">
-                                    <i className="material-icons">edit</i>
-                                </button>
-                                </Link>
-                                <button  onClick={() => deleteOfficial(val.id)} className="btn-flat">
-                                    <i className="material-icons">delete</i>
-                                </button>
+                                    <Link to="/officialUpdate"><button className="btn-flat">
+                                        <i className="material-icons" style={{color: '#F9A602'}}>edit</i>
+                                    </button>
+                                    </Link>
+                                    <button onClick={() => deleteOfficial(val.id)} className="btn-flat">
+                                        <i className="material-icons" style={{color:'#B22222'}} >delete</i>
+                                    </button>
                                 </td>
                             </tr>
-                            ))}
+                        ))}
                         </tbody>
                     </table>
                 </div>

@@ -4,6 +4,7 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
 
+
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:true}));  
@@ -46,19 +47,37 @@ app.post('/createOfficial', (req, res) => {
   );
 });
 
-/// update data
+/// update official data
 app.put("/updateOfficial", (req, res) => {
-  const id = req.body.id
-  const contact = req.body
-  db.query("UPDATE SET * official contact = ? WHERE id = ?", [contact, id], (err, result) => {
-    if(err){
-      console.log(err);
-    } else {
-      res.send(result);
+  const { id, name, position, contact } = req.body;
+  db.query(
+    "UPDATE official SET name = ?, position = ?, contact = ? WHERE id = ?", 
+    [name, position, contact, id], 
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Error updating official");
+      } else {
+        res.send("Official updated successfully");s
+      }
     }
-  })
-})
+  );
+});
 
+app.get('/search-officials', (req, res) => {
+  const query = req.query.query;
+  const sql = `SELECT * FROM official WHERE name LIKE '%${query}%'`;
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+//delete official
 app.delete('/delete/:id', (req, res) => {
   const id = req.params.id;
   db.query("DELETE FROM official WHERE id=?", [id], (err, result) => {
@@ -120,8 +139,112 @@ app.delete('/deleteresident/:residentid', (req, res) => {
   });
 });
 
-/////USER DATABASE /////
+//
+  app.get('/search-residents', (req, res) => {
+  const query = req.query.query;
+  const sql = `SELECT * FROM residents WHERE residentname LIKE '%${query}%'`;
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json(results);
+    }
+  });
+});
 
+
+// update resident
+app.put("/updateResident", (req, res) => {
+  const { residentid, residentname, residentbirthday, residentsex, residentcontactnumber, residentmaritalstatus } = req.body;
+  const query = `
+    UPDATE residents 
+    SET residentname = ?, residentbirthday = ?, residentsex = ?, residentcontactnumber = ?, residentmaritalstatus = ? 
+    WHERE id = ?
+  `;
+  const params = [residentname, residentbirthday, residentsex, residentcontactnumber, residentmaritalstatus, residentid];
+
+  db.query(query, params, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error updating resident");
+    } else {
+      res.send("Resident updated successfully");
+    }
+  });
+});
+
+
+
+/////USER DATABASE /////
+//insert user
+app.post("/createUser", (req, res) => {
+  const { username, password } = req.body;
+  
+  const query = `
+    INSERT INTO users (username, password) 
+    VALUES (?, ?)
+  `;
+  const params = [username, password];
+  db.query(query, params, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error creating user");
+    } else {
+      res.send("User created successfully");
+    }
+  });
+});
+
+///get user
+app.get("/users", (req, res) => {
+  db.query("SELECT * FROM users", (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send({ message: 'Error fetching users' });
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+//update user
+app.put("/updateUser", (req, res) => {
+  const { userid, username, password } = req.body;
+  console.log("Updating User with ID:", userid);
+  console.log("Username:", username);
+  console.log("Password:", password);
+  const query = `
+    UPDATE users SET username = ?, password = ? 
+    WHERE userid = ?
+  `;
+  const params = [username, password, userid]; // Correct order
+
+  db.query(query, params, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error updating User");
+    } else {
+      res.send("User updated successfully");
+    }
+  });
+});
+
+
+
+
+///delete user
+app.delete('/deleteUser/:userid', (req, res) => {
+  const userid = req.params.userid;
+  db.query("DELETE FROM users WHERE userid=?", [userid], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send({ message: 'Error deleting User' });
+    } else {
+      res.send({ message: 'User deleted successfully' });
+    }
+  });
+});
 
 
 app.listen(3002, () => {
