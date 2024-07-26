@@ -27,6 +27,7 @@ app.get("/officials", (req, res) => {
     }
   });
 });
+
 ///post officials data to table
 app.post('/createOfficial', (req, res) => {
   const name = req.body.name;
@@ -58,26 +59,66 @@ app.put("/updateOfficial", (req, res) => {
   })
 })
 
-//delete official data
 app.delete('/delete/:id', (req, res) => {
-  const id = req.params.id
-  db.query("DELETE FROM official WHERE id=?", [id], (err, result)=>{
-    if (err){
-      console.log(err)
+  const id = req.params.id;
+  db.query("DELETE FROM official WHERE id=?", [id], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send({ message: 'Error deleting official' });
     } else {
-      res.send(result);
+      res.send({ message: 'Official deleted successfully' });
     }
-  })
-})
+  });
+});
 
 
 
 
 /////RESIDENT DATABASE/////
+///create resident
+app.post('/createResident', (req, res) => {
+  const residentname = req.body.residentname;
+  const residentbirthday = req.body.residentbirthday;
+  const residentsex = req.body.residentsex;
+  const residentcontactnumber = req.body.residentcontactnumber;
+  const residentmaritalstatus = req.body.residentmaritalstatus;
 
+  db.query (
+    "INSERT INTO residents (residentname, residentbirthday, residentsex, residentcontactnumber, residentmaritalstatus) VALUES (?,?,?,?,?)", 
+    [residentname, residentbirthday, residentsex, residentcontactnumber, residentmaritalstatus], (err, result) => {
+      if (err) {
+        console.log(err)
+      } else {
+        res.send("Values Inserted")
+      }
+    }
+  );
+});
 
+////get resident
+app.get("/residents", (req, res) => {
+  db.query("SELECT * FROM residents", (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send({ message: 'Error fetching residents' });
+    } else {
+      res.send(result);
+    }
+  });
+});
 
-
+///delete resident
+app.delete('/deleteresident/:residentid', (req, res) => {
+  const residentid = req.params.residentid;
+  db.query("DELETE FROM residents WHERE residentid=?", [residentid], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send({ message: 'Error deleting Resident' });
+    } else {
+      res.send({ message: 'Resident deleted successfully' });
+    }
+  });
+});
 
 /////USER DATABASE /////
 

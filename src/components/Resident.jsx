@@ -1,15 +1,42 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import 'materialize-css/dist/css/materialize.min.css'; // Materialize CSS
+import axios from 'axios';
+
 
 export default function Resident() {
+    
+
     const navigate = useNavigate();
 
     const handleGoBack = () => {
         navigate(-1); // Navigate to the previous page
     };
+
+    const [residentList, setResidentList] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:3002/residents')
+          .then(response => {
+            setResidentList(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }, []);
+
+      const deleteResident = (residentid) => {
+        axios.delete(`http://localhost:3002/deleteresident/${residentid}`)
+         .then(response => {
+            console.log(response);
+            setResidentList(residentList.filter(item => item.residentid!== residentid));
+          })
+         .catch(error => {
+            console.error(error);
+          });
+      };
 
     return (
         <div style={{ height: '100vh' }}>
@@ -55,9 +82,10 @@ export default function Resident() {
                         <input id="search" type="text" style={{ maxWidth: '300px', marginBottom: '0' }} />
                         <label htmlFor="search" style={{ left: '48px' }}>Search Resident</label>
                     </div>
-                    <button className="btn waves-effect waves-light" style={{ backgroundColor: '#1976d2', color: 'white' }}>
+                    <Link to="/CreateResident"><button className="btn waves-effect waves-light" style={{ backgroundColor: '#1976d2', color: 'white' }}>
                         <i className="material-icons">add</i>
                     </button>
+                    </Link>
                 </div>
 
                 {/* Table Container */}
@@ -72,31 +100,35 @@ export default function Resident() {
                     <table className="striped" style={{ width: '100%', borderCollapse: 'collapse' }}>
                         <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1' }}>
                             <tr>
+                                <th style={{ width: '5%', textAlign: 'center', borderBottom: '2px solid #ddd', margin:'auto'}}>ID</th>
                                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Name</th>
                                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Birthday</th>
-                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Contact Number</th>
                                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Sex</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Contact Number</th>
                                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Marital Status</th>
                                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Edit/Delete</th>
                             </tr>
                         </thead>
                         <tbody>
+
+                        {residentList.map((val, key) => (
                             <tr>
-                                <td  style={{ textAlign: 'center' }}>John Doe</td>
-                                <td  style={{ textAlign: 'center' }}>01/01/1990</td>
-                                <td style={{ textAlign: 'center' }}>123-456-7890</td>
-                                <td  style={{ textAlign: 'center' }}>Female</td>
-                                <td  style={{ textAlign: 'center' }}>Single</td>
+                                <td  style={{ textAlign: 'center' }}>{val.residentid}</td>
+                                <td  style={{ textAlign: 'center' }}>{val.residentname}</td>
+                                <td  style={{ textAlign: 'center' }}>{val.residentbirthday}</td>
+                                <td style={{ textAlign: 'center' }}>{val.residentsex}</td>
+                                <td  style={{ textAlign: 'center' }}>{val.residentcontactnumber}</td>
+                                <td  style={{ textAlign: 'center' }}>{val.residentmaritalstatus}</td>
                                 <td  style={{ textAlign: 'center' }}>
                                     <button className="btn-flat">
                                         <i className="material-icons">edit</i>
                                     </button>
-                                    <button className="btn-flat">
+                                    <button onClick={() => deleteResident(val.residentid)} className="btn-flat">
                                         <i className="material-icons">delete</i>
                                     </button>
                                 </td>
                             </tr>
-                            
+                            ))}
                         </tbody>
                     </table>
                 </div>

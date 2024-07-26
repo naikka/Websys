@@ -25,8 +25,16 @@ export default function OfficialUnit() {
       }, []);
 
       const deleteOfficial = (id) => {
-        Axios.delete('http://localhost:3002/officials/delete')
-      }
+        axios.delete(`http://localhost:3002/deleteresident/${id}`)
+         .then(response => {
+            console.log(response);
+            // Update the officialList state to remove the deleted item
+            setOfficialList(officialList.filter(item => item.id!== id));
+          })
+         .catch(error => {
+            console.error(error);
+          });
+      };
 
 
     return (
