@@ -3,16 +3,28 @@ import { useNavigate } from 'react-router-dom';
 import '../CSS/main.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'material-icons/iconfont/material-icons.css';
-import axios from 'axios';
+import Axios from 'axios';
 
 export default function OfficialCreate() {
     const navigate = useNavigate();
+    const [name, setName] = useState('');
+    const [position, setPosition] = useState('');
+    const [contact, setContact] = useState('');
+    const [error, setError] = useState(null);
 
     const handleGoBack = () => {
         navigate(-1);
     };
 
-
+    const addOfficial = () => {
+        Axios.post('http://localhost:3002/createOfficial', {
+            name: name, 
+            position: position, 
+            contact: contact
+        }).then(() => {
+            console.log("success")
+        })
+    };
 
     return (
         <div className="d-flex flex-column h-100">
@@ -36,7 +48,7 @@ export default function OfficialCreate() {
                 <h3 className="mb-4">Create Official</h3>
 
                 <div className="bg-white p-4 rounded shadow-sm w-100" style={{ maxWidth: '600px' }}>
-                    <form onSubmit={handleSubmit}>
+                    <form>
                         <div className="mb-3">
                             <label htmlFor="name" className="form-label">Name</label>
                             <input 
@@ -45,7 +57,8 @@ export default function OfficialCreate() {
                                 id="name" 
                                 name="name" 
                                 required 
-                                onChange={(e) => setValues({ ...values, name: e.target.value })}
+                                value={name}
+                                require onChange={(e) => setName(e.target.value)}
                             />
                         </div>
                         <div className="mb-3">
@@ -56,7 +69,8 @@ export default function OfficialCreate() {
                                 id="position" 
                                 name="position" 
                                 required 
-                                onChange={(e) => setValues({ ...values, position: e.target.value })}
+                                value={position}
+                                require onChange={(e) => setPosition(e.target.value)}
                             />
                         </div>
                         <div className="mb-3">
@@ -66,10 +80,18 @@ export default function OfficialCreate() {
                                 className="form-control" 
                                 id="contact" 
                                 name="contact" 
-                                required onChange={(e) => setValues({ ...values, contact: e.target.files[0] })}
+                                value={contact}
+                                onChange={(e) => setContact(e.target.value)}
                             />
                         </div>
-                        <button type="submit" className="btn btn-success ">
+                        {error && (
+                            <div className="mb-3">
+                                <div className="alert alert-danger" role="alert">
+                                    {error}
+                                </div>
+                            </div>
+                        )}
+                        <button onClick={addOfficial} type="submit" className="btn btn-success ">
                             Save
                         </button>
                     </form>

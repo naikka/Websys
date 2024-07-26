@@ -10,6 +10,12 @@ import OfficialUnit from '../components/OfficialUnit';
 import OfficialCreate from '../components/OfficialCreate';
 import OfficialUpdate from '../components/OfficialUpdate';
 
+import CreateResident from '../components/CreateResident';
+import UpdateResident from '../components/UpdateResident';
+
+import CreateUser from '../components/CreateUser';
+import UpdateUser from '../components/UpdateUser';
+
 export default function App() {
     return (
         <BrowserRouter>
@@ -23,7 +29,11 @@ export default function App() {
                 <Route path="officialUnit" element={<OfficialUnit />} />
                 <Route path="officialCreate" element={<OfficialCreate />} />
                 <Route path="officialUpdate" element={<OfficialUpdate />} />
-                {/* Add other routes as needed */}
+                <Route path="createResident" element={<CreateResident />} />
+                <Route path="updateResident" element={<UpdateResident />} />
+                <Route path="updateUser" element={<UpdateUser />} />
+                <Route path="createUser" element={<CreateUser />} />
+                
             </Routes>
         </BrowserRouter>
     );

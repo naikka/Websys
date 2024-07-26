@@ -1,9 +1,87 @@
 const express = require('express');
 const cors = require('cors');
-const mysql = require('mysql');
-
-
+const mysql = require('mysql2');
+const bodyParser = require('body-parser');
 const app = express();
+
+app.use(cors())
+app.use(express.json())
+app.use(bodyParser.urlencoded({extended:true}));  
+
+const db = mysql.createConnection({
+  host:'localhost',
+  user: 'newroot',
+  password:'password',
+  database:'websystemdb'
+})
+
+////////OFFICIALS DATABASE///////
+///get data to the table
+app.get("/officials", (req, res) => {
+  db.query("SELECT * FROM official", (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send({ message: 'Error fetching officials' });
+    } else {
+      res.send(result);
+    }
+  });
+});
+///post officials data to table
+app.post('/createOfficial', (req, res) => {
+  const name = req.body.name;
+  const position = req.body.position;
+  const contact = req.body.contact;
+
+  db.query (
+    "INSERT INTO official (name, position, contact) VALUES (?,?,?)", 
+    [name, position, contact], (err, result) => {
+      if (err) {
+        console.log(err)
+      } else {
+        res.send("Values Inserted")
+      }
+    }
+  );
+});
+
+/// update data
+app.put("/updateOfficial", (req, res) => {
+  const id = req.body.id
+  const contact = req.body
+  db.query("UPDATE SET * official contact = ? WHERE id = ?", [contact, id], (err, result) => {
+    if(err){
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
+
+//delete official data
+app.delete('/delete/:id', (req, res) => {
+  const id = req.params.id
+  db.query("DELETE FROM official WHERE id=?", [id], (err, result)=>{
+    if (err){
+      console.log(err)
+    } else {
+      res.send(result);
+    }
+  })
+})
+
+
+
+
+/////RESIDENT DATABASE/////
+
+
+
+
+
+/////USER DATABASE /////
+
+
 
 app.listen(3002, () => {
   console.log('Server is running');

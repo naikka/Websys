@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import pasonglogos from '../assets/pasonglogos.png'; // Path to Pasong logo image
-import defaultimage from '../assets/defaultimage.png'; // Default image for officials
-
+import axios from 'axios';
 
 
 export default function Home() {
@@ -12,10 +11,18 @@ export default function Home() {
     const [isSidebarOpen, setSidebarOpen] = useState(true);
     const [currentTime, setCurrentTime] = useState(new Date());
 
+    const [officialList, setOfficialList] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:3002/officials')
+          .then(response => {
+            setOfficialList(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }, []);
  
-
-
-
 
     const handleLoginClick = (type) => {
         if (type === 'dashboard') {
@@ -143,20 +150,19 @@ export default function Home() {
                                     <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Name</th>
                                     <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Position</th>
                                     <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Contact</th>
-                                    
-                                    
 
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {officialList.map((val, key) => {
+                                    return (
                                      <tr style={tableRowStyle}>
-                                            
-                                            <td style={tableCellStyle}>Juan Dela Cruz</td>
-                                            <td style={tableCellStyle}>Position of Official 1</td>
-                                            <td style={tableCellStyle}>09922444552</td>
+                                            <td style={tableCellStyle}>{val.name}</td>
+                                            <td style={tableCellStyle}>{val.position}</td>
+                                            <td style={tableCellStyle}>{val.contact}</td>
                                         </tr>
-
-                                    
+                                    );
+                                 })}                                  
                                 </tbody>
                             </table>
                         </div>

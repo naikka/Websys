@@ -15,7 +15,7 @@ export default function Resident() {
         <div style={{ height: '100vh' }}>
             {/* HEADER */}
             <div style={{ 
-                height: '80px', 
+                height: '10vh', 
                 backgroundColor: '#efebe9', 
                 display: 'flex', 
                 alignItems: 'center', 
@@ -69,55 +69,25 @@ export default function Resident() {
                     maxHeight: '70vh', 
                     overflowY: 'auto' 
                 }}>
-                    <table className="striped">
-                        <thead>
+                    <table className="striped" style={{ width: '100%', borderCollapse: 'collapse' }}>
+                        <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1' }}>
                             <tr>
-                                <th>Name</th>
-                                <th>Birthday</th>
-                                <th>Sex</th>
-                                <th>Contact Number</th>
-                                <th>Marital Status</th>
-                                <th>Edit/Delete</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Name</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Birthday</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Contact Number</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Sex</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Marital Status</th>
+                                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd' }}>Edit/Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>John Doe</td>
-                                <td>01/01/1990</td>
-                                <td>Male</td>
-                                <td>123-456-7890</td>
-                                <td>Single</td>
-                                <td>
-                                    <button className="btn-flat">
-                                        <i className="material-icons">edit</i>
-                                    </button>
-                                    <button className="btn-flat">
-                                        <i className="material-icons">delete</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jane Smith</td>
-                                <td>02/02/1992</td>
-                                <td>Female</td>
-                                <td>098-765-4321</td>
-                                <td>Married</td>
-                                <td>
-                                    <button className="btn-flat">
-                                        <i className="material-icons">edit</i>
-                                    </button>
-                                    <button className="btn-flat">
-                                        <i className="material-icons">delete</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jane Smith</td>
-                                <td>02/02/1992</td>
-                                <td>Female</td>
-                                <td>098-765-4321</td>
-                                <td>Married</td>
-                                <td>
+                                <td  style={{ textAlign: 'center' }}>John Doe</td>
+                                <td  style={{ textAlign: 'center' }}>01/01/1990</td>
+                                <td style={{ textAlign: 'center' }}>123-456-7890</td>
+                                <td  style={{ textAlign: 'center' }}>Female</td>
+                                <td  style={{ textAlign: 'center' }}>Single</td>
+                                <td  style={{ textAlign: 'center' }}>
                                     <button className="btn-flat">
                                         <i className="material-icons">edit</i>
                                     </button>
@@ -127,7 +97,6 @@ export default function Resident() {
                                 </td>
                             </tr>
                             
-                            {/* Add more rows as needed */}
                         </tbody>
                     </table>
                 </div>

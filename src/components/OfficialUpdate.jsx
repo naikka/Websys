@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import 'material-icons/iconfont/material-icons.css'; // Material Icons
-import axios from 'axios';
+import Axios  from 'axios';
+
+
 export default function OfficialUpdate() {
   const navigate = useNavigate();
 
@@ -15,6 +17,20 @@ export default function OfficialUpdate() {
         event.preventDefault();
         
     };
+
+    const [newContact, setNewContact] = useState([]);
+
+    const updateOfficial = (id) => {
+        Axios.put("http://localhost:3002/update/Official", 
+          {contact: newContact, id: id}).then((response) => {
+            (response) => {
+              alert("update");
+            }
+          })
+    }
+
+
+
   return (
     <div className="d-flex flex-column min-vh-100">
             {/* HEADER */}
@@ -43,6 +59,7 @@ export default function OfficialUpdate() {
                                     className="form-control" 
                                     id="name" 
                                     name="name" 
+                                    onChange={(e) => setNewName(e.target.value)}
                                 />
                             </div>
                             <div className="mb-3">
@@ -51,7 +68,8 @@ export default function OfficialUpdate() {
                                     type="text" 
                                     className="form-control" 
                                     id="position" 
-                                    name="position" 
+                                    name="position"
+                                    onChange={(e) => setNewPosition(e.target.value)} 
                                 />
                             </div>
                         </div>
@@ -62,10 +80,11 @@ export default function OfficialUpdate() {
                                     type="text" 
                                     className="form-control" 
                                     id="contact" 
-                                    name="contact" 
+                                    name="contact"
+                                    onChange={(e) => setNewContact(e.target.value)} 
                                 />
                             </div>
-                            <button type="submit" className="btn btn-success w-100">
+                            <button onClick={()=>{updateOfficial(val.id)}} type="submit" className="btn btn-success w-100">
                                 Update
                             </button>
                         </div>
