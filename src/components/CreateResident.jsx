@@ -75,9 +75,9 @@ export default function CreateResident({ updateResidentList }) {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="birthday" className="form-label">Birthday (YYYY-MM-DD)</label>
+              <label htmlFor="birthday" className="form-label">Birthday</label>
               <input 
-                type="text" 
+                type="date" 
                 className="form-control" 
                 id="birthday" 
                 name="residentbirthday"
@@ -101,7 +101,7 @@ export default function CreateResident({ updateResidentList }) {
             <div className="mb-3">
               <label htmlFor="residentcontactnumber" className="form-label">Contact Number</label>
               <input 
-                type="text" 
+                type="number" 
                 className="form-control" 
                 id="residentcontactnumber" 
                 name="residentcontactnumber" 

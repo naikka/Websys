@@ -7,7 +7,7 @@ import Axios from 'axios';
 
 export default function OfficialCreate() {
     const navigate = useNavigate();
-    const [name, setName] = useState('');
+    const [officialname, setName] = useState('');
     const [position, setPosition] = useState('');
     const [contact, setContact] = useState('');
     const [error, setError] = useState(null);
@@ -19,7 +19,7 @@ export default function OfficialCreate() {
     const addOfficial = (event) => {
         event.preventDefault();
         Axios.post('http://localhost:3002/createOfficial', {
-            name: name, 
+            name: officialname, 
             position: position, 
             contact: contact
         }).then(() => {
@@ -63,7 +63,7 @@ export default function OfficialCreate() {
                                 id="name" 
                                 name="name" 
                                 required 
-                                value={name}
+                                value={officialname}
                                 onChange={(e) => setName(e.target.value)}
                             />
                         </div>

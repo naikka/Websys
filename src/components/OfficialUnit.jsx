@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import 'materialize-css/dist/css/materialize.min.css'; // Materialize CSS
 import axios from 'axios';
 import Axios from 'axios';
+import { setOfficialInfo } from "./OfficialUpdate";
 
 export default function OfficialUnit() {
     const navigate = useNavigate();
@@ -138,7 +139,7 @@ export default function OfficialUnit() {
                     flexDirection: 'column'  
                 }}>
                     <table className="striped" style={{ width: '100%', marginBottom: '0', tableLayout: 'auto' }}>
-                        <thead style={{ position: 'sticky', top: '0', marginTop:'0', backgroundColor: 'white', zIndex: '1' }}>
+                        <thead style={{ position: 'sticky', top: '0', marginTop:'0', backgroundColor: 'white', zIndex: '1', }}>
                             <tr>
                                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>Name</th>
                                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Position</th>
@@ -153,7 +154,14 @@ export default function OfficialUnit() {
                                 <td style={{ textAlign: 'center' }}>{val.position}</td>
                                 <td style={{ textAlign: 'center' }}>{val.contact}</td>
                                 <td style={{ textAlign: 'center' }}>
-                                    <Link to="/officialUpdate"><button className="btn-flat">
+                                    <Link to="/officialUpdate"><button className="btn-flat"
+                                    onClick={() => setOfficialInfo(
+                                          val.id,
+                                          val.name,
+                                          val.position,
+                                          val.contact,
+                                        )
+                                      }>
                                         <i className="material-icons" style={{color: '#F9A602'}}>edit</i>
                                     </button>
                                     </Link>

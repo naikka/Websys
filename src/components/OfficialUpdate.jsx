@@ -5,53 +5,47 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'material-icons/iconfont/material-icons.css';
 import Axios from 'axios';
 
+
+let id = null;
+let name = null;
+let position = null;
+let contact = null;
+
+
+
+export function setOfficialInfo (a, b, c, d) {
+  id = a;
+  name = b;
+  position = c;
+  contact = d;
+}
+
+async function handleSubmit(e) {
+  e.preventDefault();
+
+  const data = {
+    name: e.target.name.value,
+    position: e.target.position.value,
+    contact: e.target.contact.value,
+    id: id,
+  };
+
+  await Axios.put("http://localhost:3002/updateOfficial", data)
+    .then(() => console.log("Successfully updated."))
+    .catch((e) => console.log(e));
+}
+
 export default function OfficialUpdate() {
-  const [newName, setNewName] = useState('');
-  const [newPosition, setNewPosition] = useState('');
-  const [newContact, setNewContact] = useState('');
-  const [id, setId] = useState(1); // Set this to the correct ID
-
-  const navigate = useNavigate();
-
-  const handleGoBack = () => {
-    navigate('/officialUnit');
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    updateOfficial();
-  };
-
-  const updateOfficial = () => {
-    console.log("Updating official with ID:", id);
-    console.log("Name:", newName);
-    console.log("Position:", newPosition);
-    console.log("Contact:", newContact);
-
-    Axios.put("http://localhost:3002/updateOfficial", 
-      {
-        id: id,
-        name: newName,
-        position: newPosition,
-        contact: newContact
-      }
-    ).then((response) => {
-      console.log(response.data);
-      alert("Official updated successfully");
-      navigate('/officialUnit'); // Assuming this is where you want to navigate after updating
-    }).catch((error) => {
-      console.error("There was an error updating the official!", error);
-    });
-  };
 
   return (
     <div className="d-flex flex-column min-vh-100">
       {/* HEADER */}
       <header className="d-flex align-items-center bg-light shadow-sm p-3">
-        <button 
-          onClick={handleGoBack} 
-          className="btn btn-link d-flex align-items-center" 
-          style={{ color: 'white' }}
+      <button
+          /*onClick={handleGoBack}*/
+          className="btn btn-link d-flex align-items-center"
+          style={{ color: "white" }}
+          onClick={() => (window.location.href = "/officialUnit")}
         >
           <i className="material-icons">arrow_back</i>
           <span className="ms-2">Back</span>
@@ -72,8 +66,8 @@ export default function OfficialUpdate() {
                   className="form-control" 
                   id="name" 
                   name="name" 
-                  value={newName}
-                  onChange={(e) => setNewName(e.target.value)}
+                  defaultValue={name}
+                  
                 />
               </div>
               <div className="mb-3">
@@ -83,8 +77,8 @@ export default function OfficialUpdate() {
                   className="form-control" 
                   id="position" 
                   name="position"
-                  value={newPosition}
-                  onChange={(e) => setNewPosition(e.target.value)} 
+                  defaultValue={position}
+                  
                 />
               </div>
             </div>
@@ -92,15 +86,19 @@ export default function OfficialUpdate() {
               <div className="mb-3">
                 <label htmlFor="contact" className="form-label">Contact</label>
                 <input 
-                  type="text" 
+                  type="number" 
                   className="form-control" 
                   id="contact" 
                   name="contact"
-                  value={newContact}
-                  onChange={(e) => setNewContact(e.target.value)} 
+                  defaultValue={contact}
+                  
                 />
               </div>
-              <button type="submit" className="btn btn-success w-100">
+              <button type="submit"
+              onClick={() => {
+                window.location.href = "/officialUnit";
+              }}
+              className="btn btn-success w-100">
                 Update
               </button>
             </div>

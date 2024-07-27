@@ -19,7 +19,7 @@ const db = mysql.createConnection({
 ////////OFFICIALS DATABASE///////
 ///get data to the table
 app.get("/officials", (req, res) => {
-  db.query("SELECT * FROM official", (err, result) => {
+  db.query("SELECT * FROM official ORDER BY name ASC", (err, result) => {
     if (err) {
       console.log(err);
       res.status(500).send({ message: 'Error fetching officials' });
@@ -49,22 +49,6 @@ app.post('/createOfficial', (req, res) => {
   );
 });
 
-/// update official data
-app.put("/updateOfficial", (req, res) => {
-  const { id, name, position, contact } = req.body;
-  db.query(
-    "UPDATE official SET name = ?, position = ?, contact = ? WHERE id = ?", 
-    [name, position, contact, id], 
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error updating official");
-      } else {
-        res.send("Official updated successfully");s
-      }
-    }
-  );
-});
 
 ///search official
 app.get('/search-officials', (req, res) => {
@@ -119,7 +103,7 @@ app.post('/createResident', (req, res) => {
 
 ////get resident
 app.get("/residents", (req, res) => {
-  db.query("SELECT * FROM residents", (err, result) => {
+  db.query("SELECT * FROM residents ORDER BY residentname ASC", (err, result) => {
     if (err) {
       console.log(err);
       res.status(500).send({ message: 'Error fetching residents' });
@@ -187,6 +171,20 @@ app.put('/updateResident', (req, res) => {
   ]);
 
   console.log(data);
+});
+
+
+
+/// update official data "UPDATE official SET name = ?, position = ?, contact = ? WHERE id = ?", 
+app.put("/updateOfficial", (req, res) => {
+  const task = req.body;
+  const data = db.query( "UPDATE official SET name = ?, position = ?, contact = ? WHERE id = ?", [
+    task.name,
+    task.position,
+    task.contact,
+    task.id
+  ]);
+  console.log(data)
 });
 
 

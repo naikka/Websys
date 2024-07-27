@@ -134,10 +134,10 @@ export default function Home() {
                 <div style={{ flex: 1, padding: '20px', display: 'flex', height: '100vh', overflowY: 'auto' }}>
                     <div style={{ width: '70%', marginRight: '20px', display: 'flex', flexDirection: 'column' }}>
                         <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginTop:'4px', marginBottom:'24px', color:'#1976d2'}}>DASHBOARD</h2>
-                        <h3 style={{ color: '#333', fontSize: '20px', marginBottom: '20px', marginTop:'0'}}>Current Barangay Officials</h3>
+                        <h3 style={{ color: '#333', fontSize: '24px', margin:'auto', paddingBottom:'20px'}}>Current Barangay Officials</h3>
                         <div style={tableContainerStyle}>
                             <table className="table table-striped" style={{ width: '100%', marginBottom: '0', tableLayout: 'auto' }}>
-                                <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1' }}>
+                                <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1', fontSize:'18px' }}>
                                     <tr>
                                     <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>Name</th>
                                     <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>Position</th>
@@ -146,7 +146,7 @@ export default function Home() {
                                 </thead>
                                 <tbody>
                                 {officialList.map((val, key) => (
-                                     <tr key={key} style={tableRowStyle}>
+                                     <tr key={key}>
                                             <td style={tableCellStyle}>{val.name}</td>
                                             <td style={tableCellStyle}>{val.position}</td>
                                             <td style={tableCellStyle}>{val.contact}</td>
@@ -208,7 +208,7 @@ const boxStyle = {
     borderRadius: '10px', 
     marginBottom: '10px',
     position: 'relative',
-    flex: 1
+    flex: 1,
 };
 
 const boxTextStyle = {
@@ -241,9 +241,6 @@ const tableContainerStyle = {
     backgroundColor: 'white',
 };
 
-const tableRowStyle = {
-    height: '20px' 
-};
 
 const tableCellStyle = {
     textAlign: 'center',

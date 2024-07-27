@@ -39,6 +39,8 @@ async function handleSubmit(e) {
 }
 
 export default function UpdateResident() {
+
+
   return (
     <div className="d-flex flex-column min-vh-100">
       {/* HEADER */}
@@ -88,7 +90,7 @@ export default function UpdateResident() {
                   Birthday
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   className="form-control"
                   id="residentbirthday"
                   name="residentbirthday"
@@ -114,7 +116,7 @@ export default function UpdateResident() {
                   Contact Number
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   id="residentcontactnumber"
                   name="residentcontactnumber"
