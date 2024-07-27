@@ -133,7 +133,7 @@ export default function Home() {
 
                 <div style={{ flex: 1, padding: '20px', display: 'flex', height: '100vh', overflowY: 'auto' }}>
                     <div style={{ width: '70%', marginRight: '20px', display: 'flex', flexDirection: 'column' }}>
-                        <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginTop:'4px', marginBottom:'24px', color:'#1976d2'}}>Dashboard</h2>
+                        <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginTop:'4px', marginBottom:'24px', color:'#1976d2'}}>DASHBOARD</h2>
                         <h3 style={{ color: '#333', fontSize: '20px', marginBottom: '20px', marginTop:'0'}}>Current Barangay Officials</h3>
                         <div style={tableContainerStyle}>
                             <table className="table table-striped" style={{ width: '100%', marginBottom: '0', tableLayout: 'auto' }}>
@@ -218,15 +218,14 @@ const boxTextStyle = {
 
 const boxNumberStyle = {
     fontSize: '54px', 
-    color: '#333', 
+    color: '#0d47a1', 
     textAlign: 'center',
-    marginTop:'0',
-    marginBottom:'1.4em'
+    marginTop:'.5em',
 };
 
 const boxIconStyle = {
     fontSize: '36px',
-    color: '#0d47a1',
+    color: '#1976d2',
     position: 'absolute', 
     bottom: '10px', 
     left: '10px' 

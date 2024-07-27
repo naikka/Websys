@@ -58,7 +58,7 @@ export default function CreateResident({ updateResidentList }) {
 
       {/* MAIN CONTENT */}
       <main className="flex-grow-1 d-flex flex-column align-items-center bg-light py-4" style={{height:'90vh'}}>
-        <h3 className="mb-4" style={{color: '#1976d2', fontSize:'34px', marginTop:'0'}}>CREATE RESIDENT</h3>
+        <h3 className="mb-4" style={{color: '#4db6ac', fontSize:'34px', marginTop:'0'}}>CREATE RESIDENT</h3>
 
         <div className="bg-white p-4 rounded shadow-sm w-100" style={{ maxWidth: '600px' }}>
           <form onSubmit={addResident}>

@@ -51,7 +51,7 @@ export default function OfficialCreate() {
 
             {/* MAIN CONTENT */}
             <main className="flex-grow-1 d-flex flex-column align-items-center bg-light py-4">
-                <h3 className="mb-4">Create Official</h3>
+                <h3 className="mb-4" style={{color:"#4db6ac"}}>Create Official</h3>
 
                 <div className="bg-white p-4 rounded shadow-sm w-100" style={{ maxWidth: '600px' }}>
                     <form onSubmit={addOfficial}>

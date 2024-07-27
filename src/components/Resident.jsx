@@ -143,7 +143,7 @@ export default function Resident() {
           <table className="striped" style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1' }}>
               <tr>
-                <th style={{ width: '5%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>ID</th>
+                <th style={{ width: '5%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Item</th>
                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Name</th>
                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Birthday</th>
                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Sex</th>
@@ -155,7 +155,7 @@ export default function Resident() {
             <tbody>
               {residentList.map((val, key) => (
                 <tr key={key}>
-                  <td style={{ textAlign: 'center' }}>{val.residentid}</td>
+                  <td style={{ textAlign: 'center' }}>{key+1}</td>
                   <td style={{ textAlign: 'center' }}>{val.residentname}</td>
                   <td style={{ textAlign: 'center' }}>{val.residentbirthday}</td>
                   <td style={{ textAlign: 'center' }}>{val.residentsex}</td>

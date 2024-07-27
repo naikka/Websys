@@ -60,7 +60,7 @@ export default function OfficialUpdate() {
 
       {/* MAIN CONTENT */}
       <main className="flex-grow-1 d-flex flex-column align-items-center bg-light py-4">
-        <h3 className="mb-4">Update Official</h3>
+        <h3 className="mb-4" style={{color:"#4db6ac"}}>Update Official</h3>
         
         <div className="bg-white p-4 rounded shadow-sm w-100 d-flex flex-column justify-content-between" style={{ maxWidth: '600px' }}>
           <form onSubmit={handleSubmit} className="d-flex flex-column h-100">

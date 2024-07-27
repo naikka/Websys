@@ -35,7 +35,7 @@ export default function LogInPage() {
                                 <input className='form-control mb-2'  placeholder='Username' style={{ fontSize: '1.2rem'}} />
                                 <input className='form-control mb-4'  type='password' placeholder='Password' style={{ fontSize: '1.2rem'}} />
                                 <div className='d-grid gap-2'>
-                                    <button className="btn btn-secondary mb-3" type="button" onClick={handleLoginClick} style={{ backgroundColor:'#1565c0' }}>Log In</button>
+                                    <button className="btn btn-secondary mb-3" type="button" onClick={handleLoginClick} style={{ backgroundColor:'#4db6ac' }}>Log In</button>
                                 </div>
                             </form>
                         </div>

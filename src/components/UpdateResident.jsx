@@ -71,7 +71,7 @@ export default function UpdateResident() {
       <main className="flex-grow-1 d-flex flex-column align-items-center bg-light py-4">
         <h3
           className="mb-4"
-          style={{ color: "#1976d2", fontSize: "34px", marginTop: "0" }}
+          style={{ color: "#4db6ac", fontSize: "34px", marginTop: "0" }}
         >
           UPDATE RESIDENT
         </h3>
