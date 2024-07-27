@@ -10,6 +10,10 @@ export default function OfficialUnit() {
     const [officialList, setOfficialList] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
 
+    const [totalResidents, setTotalResidents] = useState(0);
+    const [totalMaleResidents, setTotalMaleResidents] = useState(0);
+    const [totalFemaleResidents, setTotalFemaleResidents] = useState(0);
+
     useEffect(() => {
         // Fetch the initial list of officials
         axios.get('http://localhost:3002/officials')
@@ -54,14 +58,42 @@ export default function OfficialUnit() {
     };
 
     const deleteOfficial = (id) => {
-        axios.delete(`http://localhost:3002/deleteresident/${id}`)
+        if (window.confirm("Are you sure you want to delete this official?")) {
+            axios.delete(`http://localhost:3002/deleteresident/${id}`)
+                .then(response => {
+                    console.log(response);
+                    // Update the officialList state to remove the deleted item
+                    setOfficialList(officialList.filter(item => item.id !== id));
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    };
+
+    const fetchResidentCounts = () => {
+        axios.get('http://localhost:3002/count-residents')
             .then(response => {
-                console.log(response);
-                // Update the officialList state to remove the deleted item
-                setOfficialList(officialList.filter(item => item.id !== id));
+                setTotalResidents(response.data.total);
             })
             .catch(error => {
-                console.error(error);
+                console.error('Error fetching total residents:', error);
+            });
+
+        axios.get('http://localhost:3002/count-male-residents')
+            .then(response => {
+                setTotalMaleResidents(response.data.total);
+            })
+            .catch(error => {
+                console.error('Error fetching total male residents:', error);
+            });
+
+        axios.get('http://localhost:3002/count-female-residents')
+            .then(response => {
+                setTotalFemaleResidents(response.data.total);
+            })
+            .catch(error => {
+                console.error('Error fetching total female residents:', error);
             });
     };
 

@@ -29,6 +29,8 @@ app.get("/officials", (req, res) => {
   });
 });
 
+
+
 ///post officials data to table
 app.post('/createOfficial', (req, res) => {
   const name = req.body.name;
@@ -64,6 +66,7 @@ app.put("/updateOfficial", (req, res) => {
   );
 });
 
+///search official
 app.get('/search-officials', (req, res) => {
   const query = req.query.query;
   const sql = `SELECT * FROM official WHERE name LIKE '%${query}%'`;
@@ -126,6 +129,23 @@ app.get("/residents", (req, res) => {
   });
 });
 
+
+/// Define the /residents/total endpoint
+app.get('/residents/total', (req, res) => {
+  const query = `
+    SELECT COUNT(*) AS totalResidents, SUM(CASE WHEN residentsex = 'Male' THEN 1 ELSE 0 END) AS totalMaleResidents, SUM(CASE WHEN residentsex = 'Female' THEN 1 ELSE 0 END) AS totalFemaleResidents FROM residents
+  `;
+  
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send({ message: 'Error fetching residents count' });
+    } else {
+      res.send(result[0]);
+    }
+  });
+});
+
 ///delete resident
 app.delete('/deleteresident/:residentid', (req, res) => {
   const residentid = req.params.residentid;
@@ -158,10 +178,7 @@ app.delete('/deleteresident/:residentid', (req, res) => {
 app.put("/updateResident", (req, res) => {
   const { residentid, residentname, residentbirthday, residentsex, residentcontactnumber, residentmaritalstatus } = req.body;
   const query = `
-    UPDATE residents 
-    SET residentname = ?, residentbirthday = ?, residentsex = ?, residentcontactnumber = ?, residentmaritalstatus = ? 
-    WHERE id = ?
-  `;
+    UPDATE residents SET residentname=?, residentbirthday=?, residentsex=?, residentcontactnumber=?, residentmaritalstatus=? WHERE residentid=?`;
   const params = [residentname, residentbirthday, residentsex, residentcontactnumber, residentmaritalstatus, residentid];
 
   db.query(query, params, (err, result) => {

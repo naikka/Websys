@@ -1,48 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../CSS/main.css'; // Assuming this contains your custom styles
-import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
-import pasonglogos from '../assets/pasonglogos.png'; // Path to Pasong logo image
+import '../CSS/main.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import pasonglogos from '../assets/pasonglogos.png';
 import axios from 'axios';
-
 
 export default function Home() {
     const navigate = useNavigate();
     const [isSidebarOpen, setSidebarOpen] = useState(true);
     const [currentTime, setCurrentTime] = useState(new Date());
 
-    const [officialList, setOfficialList] = useState([])
+    const [officialList, setOfficialList] = useState([]);
+    const [totalResidents, setTotalResidents] = useState(0);
+    const [totalMaleResidents, setTotalMaleResidents] = useState(0);
+    const [totalFemaleResidents, setTotalFemaleResidents] = useState(0);
 
     useEffect(() => {
         axios.get('http://localhost:3002/officials')
-          .then(response => {
-            setOfficialList(response.data);
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      }, []);
- 
+            .then(response => {
+                setOfficialList(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        axios.get('http://localhost:3002/residents/total')
+            .then(response => {
+                setTotalResidents(response.data.totalResidents);
+                setTotalMaleResidents(response.data.totalMaleResidents);
+                setTotalFemaleResidents(response.data.totalFemaleResidents);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
 
     const handleLoginClick = (type) => {
-        if (type === 'dashboard') {
-            navigate('/Home');
-        } else if (type === 'user') {
-            navigate('/User');
-        } else if (type === 'resident') {
-            navigate('/Resident');
-        } else if (type === 'documents') {
-            navigate('/Documents');
-        } else if (type === 'officialunit') {
-            navigate('/OfficialUnit'); // Updated route
-        } else if (type === 'exit') {
-            navigate('/LogInPage');
-        }
-        if (isSidebarOpen) setSidebarOpen(false); // Collapse sidebar after navigation
+        navigate(`/${type}`);
+        if (isSidebarOpen) setSidebarOpen(false);
     };
 
     const toggleSidebar = () => {
-        setSidebarOpen(prevState => !prevState); 
+        setSidebarOpen(prevState => !prevState);
     };
 
     useEffect(() => {
@@ -59,7 +58,6 @@ export default function Home() {
 
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
-            {/* SIDEBAR DASHBOARD */}
             <div style={{ 
                 width: isSidebarOpen ? '280px' : '80px', 
                 backgroundColor: '#0d47a1', 
@@ -96,27 +94,23 @@ export default function Home() {
                     flexDirection: 'column', 
                     alignItems: isSidebarOpen ? 'flex-start' : 'center' 
                 }}>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('dashboard')}>
+                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('Home')}>
                         <i className="material-icons" style={iconStyle}>dashboard</i>
                         {isSidebarOpen && <span>Dashboard</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('resident')}>
+                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('Resident')}>
                         <i className="material-icons" style={iconStyle}>group</i>
                         {isSidebarOpen && <span>Resident</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('documents')}>
+                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('Documents')}>
                         <i className="material-icons" style={iconStyle}>description</i>
-                        {isSidebarOpen && <span>Documents</span>}
+                        {isSidebarOpen && <span>Certificate</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('officialunit')}>
-                        <i className="material-icons" style={iconStyle}>recent_actors</i> {/* Updated icon */}
+                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('OfficialUnit')}>
+                        <i className="material-icons" style={iconStyle}>recent_actors</i>
                         {isSidebarOpen && <span>Barangay Official</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('user')}>
-                        <i className="material-icons" style={iconStyle}>person</i>
-                        {isSidebarOpen && <span>User</span>}
-                    </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('exit')}>
+                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('LogInPage')}>
                         <i className="material-icons" style={iconStyle}>exit_to_app</i>
                         {isSidebarOpen && <span>Log Out</span>}
                     </button>
@@ -130,7 +124,6 @@ export default function Home() {
             </div>
 
             <div style={{ flex: 1, backgroundColor: '#f5f5f5', display: 'flex', flexDirection: 'column' }}>
-                {/* HEADER */}
                 <div style={{ minHeight: '60px', backgroundColor: '#efebe9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: '4rem' }}>
                         <i className="material-icons" style={{ color: '#1976d2', fontSize: '26px', marginRight: '1rem' }}>person</i>
@@ -138,8 +131,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* MAIN CONTENT */}
-                <div style={{ flex: 1, padding: '20px', display: 'flex', Height: '100vh', overflowY: 'auto' }}>
+                <div style={{ flex: 1, padding: '20px', display: 'flex', height: '100vh', overflowY: 'auto' }}>
                     <div style={{ width: '70%', marginRight: '20px', display: 'flex', flexDirection: 'column' }}>
                         <h2 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold', marginTop:'4px', marginBottom:'24px', color:'#1976d2'}}>Dashboard</h2>
                         <h3 style={{ color: '#333', fontSize: '20px', marginBottom: '20px', marginTop:'0'}}>Current Barangay Officials</h3>
@@ -150,19 +142,16 @@ export default function Home() {
                                     <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>Name</th>
                                     <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>Position</th>
                                     <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>Contact</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {officialList.map((val, key) => {
-                                    return (
-                                     <tr style={tableRowStyle}>
+                                {officialList.map((val, key) => (
+                                     <tr key={key} style={tableRowStyle}>
                                             <td style={tableCellStyle}>{val.name}</td>
                                             <td style={tableCellStyle}>{val.position}</td>
                                             <td style={tableCellStyle}>{val.contact}</td>
                                         </tr>
-                                    );
-                                 })}                                  
+                                    ))}                                  
                                 </tbody>
                             </table>
                         </div>
@@ -173,22 +162,17 @@ export default function Home() {
                             <div style={boxStyle}>
                                 <i className="material-icons" style={boxIconStyle}>people</i>
                                 <p style={boxTextStyle}>Total Number Of Residents</p>
-                                <h2 style={boxNumberStyle}>200</h2>
+                                <h2 style={boxNumberStyle}>{totalResidents}</h2>
                             </div>
                             <div style={boxStyle}>
                                 <i className="material-icons" style={boxIconStyle}>male</i>
                                 <p style={boxTextStyle}>Male</p>
-                                <h2 style={boxNumberStyle}>200</h2>
+                                <h2 style={boxNumberStyle}>{totalMaleResidents}</h2>
                             </div>
                             <div style={boxStyle}>
                                 <i className="material-icons" style={boxIconStyle}>female</i>
                                 <p style={boxTextStyle}>Female</p>
-                                <h2 style={boxNumberStyle}>200</h2>
-                            </div>
-                            <div style={boxStyle}>
-                                <i className="material-icons" style={boxIconStyle}>how_to_vote</i>
-                                <p style={boxTextStyle}>Registered Voters</p>
-                                <h2 style={boxNumberStyle}>200</h2>
+                                <h2 style={boxNumberStyle}>{totalFemaleResidents}</h2>
                             </div>
                         </div>
                     </div>
@@ -233,7 +217,7 @@ const boxTextStyle = {
 };
 
 const boxNumberStyle = {
-    fontSize: '36px', 
+    fontSize: '54px', 
     color: '#333', 
     textAlign: 'center',
     marginTop:'0',
@@ -242,7 +226,7 @@ const boxNumberStyle = {
 
 const boxIconStyle = {
     fontSize: '36px',
-    color: '#333',
+    color: '#0d47a1',
     position: 'absolute', 
     bottom: '10px', 
     left: '10px' 
@@ -258,12 +242,11 @@ const tableContainerStyle = {
     backgroundColor: 'white',
 };
 
-
 const tableRowStyle = {
     height: '20px' 
 };
+
 const tableCellStyle = {
     textAlign: 'center',
     padding: '10px',
-
 };

@@ -31,14 +31,16 @@ export default function Resident() {
   };
 
   const deleteResident = (residentid) => {
-    Axios.delete(`http://localhost:3002/deleteresident/${residentid}`)
-      .then(response => {
-        console.log(response);
-        setResidentList(residentList.filter(item => item.residentid !== residentid));
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    if (window.confirm("Are you sure you want to delete this resident?")) {
+      Axios.delete(`http://localhost:3002/deleteresident/${residentid}`)
+        .then(response => {
+          console.log(response);
+          setResidentList(residentList.filter(item => item.residentid !== residentid));
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
   };
 
   const updateResidentList = (newResident) => {

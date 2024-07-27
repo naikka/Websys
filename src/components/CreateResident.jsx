@@ -63,7 +63,7 @@ export default function CreateResident({ updateResidentList }) {
         <div className="bg-white p-4 rounded shadow-sm w-100" style={{ maxWidth: '600px' }}>
           <form onSubmit={addResident}>
             <div className="mb-3">
-              <label htmlFor="name" className="form-label">Name</label>
+              <label htmlFor="name" className="form-label">Full Name</label>
               <input 
                 type="text" 
                 className="form-control" 
