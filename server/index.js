@@ -3,6 +3,8 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
+const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 
 app.use(cors())
@@ -15,6 +17,8 @@ const db = mysql.createConnection({
   password: 'naika@352088',
   database:'websystemdb'
 })
+
+
 
 ////////OFFICIALS DATABASE///////
 ///get data to the table

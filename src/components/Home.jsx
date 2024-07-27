@@ -16,6 +16,31 @@ export default function Home() {
     const [totalFemaleResidents, setTotalFemaleResidents] = useState(0);
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('http://localhost:3002/home', {
+                    headers: {
+                        'Authorization': token,
+                    },
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Protected data:', data);
+                } else {
+                    console.error('Failed to fetch protected data');
+                }
+            } catch (error) {
+                console.error('Error fetching protected data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
+    useEffect(() => {
         axios.get('http://localhost:3002/officials')
             .then(response => {
                 setOfficialList(response.data);

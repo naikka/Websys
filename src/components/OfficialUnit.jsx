@@ -109,7 +109,7 @@ export default function OfficialUnit() {
                 {/* Search Bar */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 20px', padding: '0' }}>
                     <div className="input-field" style={{ display: 'flex', alignItems: 'center', marginRight: '20px' }}>
-                        <i className="material-icons" style={{ marginRight: '20px' }}>search</i>
+                        <i className="material-icons" style={{ marginRight: '20px', color:'#1976d2' }}>search</i>
                         <input 
                             id="search" 
                             type="text" 

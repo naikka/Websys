@@ -13,13 +13,16 @@ import CreateResident from '../components/CreateResident';
 import UpdateResident from '../components/UpdateResident';
 
 
+
 export default function App() {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LogInPage />} />
                 <Route path="loginpage" element={<LogInPage />} />
-                <Route path="home" element={<Home />} />
+                
+                    <Route path="/home" element={<Home />} />
+                
                 <Route path="resident" element={<Resident />} />
                 <Route path="documents" element={<Documents />} />
                 <Route path="officialUnit" element={<OfficialUnit />} />
