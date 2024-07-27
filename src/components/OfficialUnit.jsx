@@ -4,15 +4,12 @@ import '../CSS/main.css'; // Assuming this contains your custom styles
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import 'materialize-css/dist/css/materialize.min.css'; // Materialize CSS
 import axios from 'axios';
+import Axios from 'axios';
 
 export default function OfficialUnit() {
     const navigate = useNavigate();
     const [officialList, setOfficialList] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
-
-    const [totalResidents, setTotalResidents] = useState(0);
-    const [totalMaleResidents, setTotalMaleResidents] = useState(0);
-    const [totalFemaleResidents, setTotalFemaleResidents] = useState(0);
 
     useEffect(() => {
         // Fetch the initial list of officials
@@ -59,7 +56,7 @@ export default function OfficialUnit() {
 
     const deleteOfficial = (id) => {
         if (window.confirm("Are you sure you want to delete this official?")) {
-            axios.delete(`http://localhost:3002/deleteresident/${id}`)
+            axios.delete(`http://localhost:3002/delete/${id}`)
                 .then(response => {
                     console.log(response);
                     // Update the officialList state to remove the deleted item
@@ -69,32 +66,6 @@ export default function OfficialUnit() {
                     console.error(error);
                 });
         }
-    };
-
-    const fetchResidentCounts = () => {
-        axios.get('http://localhost:3002/count-residents')
-            .then(response => {
-                setTotalResidents(response.data.total);
-            })
-            .catch(error => {
-                console.error('Error fetching total residents:', error);
-            });
-
-        axios.get('http://localhost:3002/count-male-residents')
-            .then(response => {
-                setTotalMaleResidents(response.data.total);
-            })
-            .catch(error => {
-                console.error('Error fetching total male residents:', error);
-            });
-
-        axios.get('http://localhost:3002/count-female-residents')
-            .then(response => {
-                setTotalFemaleResidents(response.data.total);
-            })
-            .catch(error => {
-                console.error('Error fetching total female residents:', error);
-            });
     };
 
     return (
