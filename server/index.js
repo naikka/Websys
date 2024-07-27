@@ -175,23 +175,19 @@ app.delete('/deleteresident/:residentid', (req, res) => {
 
 
 // update resident
-app.put("/updateResident", (req, res) => {
-  const { residentid, residentname, residentbirthday, residentsex, residentcontactnumber, residentmaritalstatus } = req.body;
-  const query = `
-    UPDATE residents SET residentname=?, residentbirthday=?, residentsex=?, residentcontactnumber=?, residentmaritalstatus=? WHERE residentid=?`;
-  const params = [residentname, residentbirthday, residentsex, residentcontactnumber, residentmaritalstatus, residentid];
+app.put('/updateResident', (req, res) => {
+  const task = req.body;
+  const data = db.query('UPDATE residents SET residentname=?, residentbirthday=?, residentsex=?, residentcontactnumber=?, residentmaritalstatus=? WHERE residentid=?', [
+    task.residentname,
+    task.residentbirthday,
+    task.residentsex,
+    task.residentcontactnumber,
+    task.residentmaritalstatus,
+    task.residentid
+  ]);
 
-  db.query(query, params, (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error updating resident");
-    } else {
-      res.send("Resident updated successfully");
-    }
-  });
+  console.log(data);
 });
-
-
 
 
 app.listen(3002, () => {

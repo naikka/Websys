@@ -1,66 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../CSS/main.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "material-icons/iconfont/material-icons.css";
 import Axios from "axios";
 
+let id = null;
+let name = null;
+let birthday = null;
+let sex = null;
+let contactnumber = null;
+let maritalstatus = null;
+
+export function SetResidentInfo(a, b, c, d, e, f) {
+  id = a;
+  name = b;
+  birthday = c;
+  sex = d;
+  contactnumber = e;
+  maritalstatus = f;
+}
+
+async function handleSubmit(e) {
+  e.preventDefault();
+
+  const data = {
+    residentname: e.target.residentname.value,
+    residentbirthday: e.target.residentbirthday.value,
+    residentsex: e.target.residentsex.value,
+    residentcontactnumber: e.target.residentcontactnumber.value,
+    residentmaritalstatus: e.target.residentmaritalstatus.value,
+    residentid: id,
+  };
+
+  await Axios.put("http://localhost:3002/updateResident", data)
+    .then(() => console.log("Successfully updated."))
+    .catch((e) => console.log(e));
+}
+
 export default function UpdateResident() {
-  const navigate = useNavigate();
-
-  const [newName, setNewName] = useState("");
-  const [newBirthday, setNewBirthday] = useState("");
-  const [newSex, setNewSex] = useState("");
-  const [newContactnumber, setNewContactnumber] = useState("");
-  const [newMaritalStatus, setNewMaritalStatus] = useState("");
-
-  const [residentid, setResidentId] = useState(1); // Set this to the correct ID
-
-  const handleGoBack = () => {
-    navigate("/resident");
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    updateResident();
-  };
-
-  const updateResident = () => {
-    console.log("Updating Resident with ID:", residentid);
-    console.log("Name:", newName);
-    console.log("Birthday:", newBirthday);
-    console.log("Sex:", newSex);
-    console.log("Contact:", newContactnumber);
-    console.log("Marital Status:", newMaritalStatus);
-
-    Axios.put("http://localhost:3002/updateResident", {
-      residentname: newName,
-      residentbirthday: newBirthday,
-      residentsex: newSex,
-      residentcontactnumber: newContactnumber,
-      residentmaritalstatus: newMaritalStatus,
-      residentid: residentid,
-    })
-      .then((response) => {
-        console.log(response.data);
-        alert("Resident updated successfully");
-        navigate("/resident");
-      })
-      .catch((error) => {
-        console.error("Error updating resident:", error.message);
-        alert("Error updating resident. Please try again later.");
-        navigate("/resident");
-      });
-  };
-
   return (
     <div className="d-flex flex-column min-vh-100">
       {/* HEADER */}
       <header className="d-flex align-items-center bg-light shadow-sm p-3">
         <button
-          onClick={handleGoBack}
+          /*onClick={handleGoBack}*/
           className="btn btn-link d-flex align-items-center"
           style={{ color: "white" }}
+          onClick={() => (window.location.href = "/resident")}
         >
           <i className="material-icons">arrow_back</i>
           <span className="ms-2">Back</span>
@@ -80,6 +67,7 @@ export default function UpdateResident() {
           className="bg-white p-4 rounded shadow-sm w-100 d-flex flex-column justify-content-between"
           style={{ maxWidth: "600px" }}
         >
+          {/* UPDATE FORMS */}
           <form onSubmit={handleSubmit} className="d-flex flex-column h-100">
             <div>
               <div className="mb-3">
@@ -91,8 +79,8 @@ export default function UpdateResident() {
                   className="form-control"
                   id="residentname"
                   name="residentname"
-                  value={newName}
-                  onChange={(e) => setNewName(e.target.value)}
+                  defaultValue={name}
+                  /*onChange={(e) => setNewName(e.target.value)}*/
                 />
               </div>
               <div className="mb-3">
@@ -104,8 +92,8 @@ export default function UpdateResident() {
                   className="form-control"
                   id="residentbirthday"
                   name="residentbirthday"
-                  value={newBirthday}
-                  onChange={(e) => setNewBirthday(e.target.value)}
+                  defaultValue={birthday}
+                  /*onChange={(e) => setNewBirthday(e.target.value)}*/
                 />
               </div>
               <div className="mb-3">
@@ -117,8 +105,8 @@ export default function UpdateResident() {
                   className="form-control"
                   id="residentsex"
                   name="residentsex"
-                  value={newSex}
-                  onChange={(e) => setNewSex(e.target.value)}
+                  defaultValue={sex}
+                  /*onChange={(e) => setNewSex(e.target.value)}*/
                 />
               </div>
               <div className="mb-3">
@@ -130,8 +118,8 @@ export default function UpdateResident() {
                   className="form-control"
                   id="residentcontactnumber"
                   name="residentcontactnumber"
-                  value={newContactnumber}
-                  onChange={(e) => setNewContactnumber(e.target.value)}
+                  defaultValue={contactnumber}
+                  /*onChange={(e) => setNewContactnumber(e.target.value)}*/
                 />
               </div>
               <div className="mb-3">
@@ -143,11 +131,17 @@ export default function UpdateResident() {
                   className="form-control"
                   id="residentmaritalstatus"
                   name="residentmaritalstatus"
-                  value={newMaritalStatus}
-                  onChange={(e) => setNewMaritalStatus(e.target.value)}
+                  defaultValue={maritalstatus}
+                  /*onChange={(e) => setNewMaritalStatus(e.target.value)}*/
                 />
               </div>
-              <button type="submit" className="btn btn-success w-100">
+              <button
+                type="submit"
+                className="btn btn-success w-100"
+                onClick={() => {
+                  window.location.href = "/resident";
+                }}
+              >
                 Update
               </button>
             </div>
