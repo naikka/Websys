@@ -1,20 +1,9 @@
-import mysql from 'mysql'
-
-
-const mariadb = require('mariadb'); 
+const mariadb = require('mariadb');
 const pool = mariadb.createPool({
-    host: 'localhost', 
+    host: 'localhost',
     user: 'root',
     password: '',
-    database: 'bppis'
+    database: 'websystemdb'
 });
 
-con.connect(function(err) {
-    if(err) {
-        console.log("connection error")
-    } else {
-        console.log("Connected")
-    }
-})
-
-module.exports = Object.freeze({pool:pool});
+module.exports = Object.freeze({ pool: pool });
