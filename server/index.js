@@ -41,7 +41,7 @@ app.post('/register', (req, res) => {
   });
 });
 
-// Define a route for logging in
+// logging in
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 

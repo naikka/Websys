@@ -20,7 +20,11 @@ export default function Documents() {
   }, []);
 
   useEffect(() => {
-    M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {});
+    M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {
+      constrainWidth: false,
+      coverTrigger: false,
+
+    });
   }, [residentList]);
 
   const fetchResidents = () => {
@@ -114,15 +118,15 @@ export default function Documents() {
           maxHeight: '70vh', 
           overflowY: 'auto' 
         }}>
-          <table className="striped" style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <table className="striped" style={{ width: '100%', borderCollapse: 'collapse', padding:'4em' }}>
             <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1' }}>
               <tr>
-                <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Name</th>
-                <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Birthday</th>
-                <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Sex</th>
-                <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Contact Number</th>
-                <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Purok</th>
-                <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Documents</th>
+                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Name</th>
+                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Birthday</th>
+                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Sex</th>
+                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Contact Number</th>
+                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Purok</th>
+                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Documents</th>
               </tr>
             </thead>
             <tbody>
@@ -134,11 +138,11 @@ export default function Documents() {
                   <td style={{ textAlign: 'center' }}>{val.residentcontactnumber}</td>
                   <td style={{ textAlign: 'center' }}>{val.purok}</td>
                   <td style={{ textAlign: 'center' }}>
-                    <button className="btn dropdown-trigger" data-target={`dropdown${key}`}>Select Certificate</button>
+                    <button className="btn dropdown-trigger" data-target={`dropdown${key}`}>Select</button>
                     <ul id={`dropdown${key}`} className="dropdown-content">
-                      <li style={{ textAlign: 'center' }}><a href="#!">Barangay Certification</a></li>
-                      <li style={{ textAlign: 'center' }}><a href="#!">Barangay Clearance </a></li>
-                      <li style={{ textAlign: 'center' }}><a href="#!">Certificate Of Indigency</a></li>
+                      <li><a href="#!">Barangay Certification</a></li>
+                      <li><a href="#!">Barangay Clearance </a></li>
+                      <li><a href="#!">Certificate of Indigency</a></li>
                     </ul>
                   </td>
                 </tr>
