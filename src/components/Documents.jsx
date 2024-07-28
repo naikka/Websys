@@ -5,25 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css';
 import Axios from 'axios';
-import { generateCertification} from './Certificationform';
-import { generateClearance} from './Clearance';
-import { generateIndigency} from './Indigency';
+import jsPDF from 'jspdf';
 
 
 export default function Documents() {
   const navigate = useNavigate();
   const [residentList, setResidentList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedResident, setSelectedResident] = useState(null);
 
-  const handleSelect = (data, type) => {
-    if (type === 'clearance') {
-      generateClearance(data);
-    } else if (type === 'indigency') {
-      generateIndigency(data);
-    } else if (type === 'certification') {
-      generateCertification(data);
-    }
-  };
 
   const handleGoBack = () => {
     navigate("/home");
@@ -33,11 +23,10 @@ export default function Documents() {
     fetchResidents();
   }, []);
 
-  useEffect(() => {
+   useEffect(() => {
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {
       constrainWidth: false,
       coverTrigger: false,
-
     });
   }, [residentList]);
 
@@ -71,6 +60,23 @@ export default function Documents() {
     setSearchQuery(event.target.value);
   };
 
+  const handleSelect = (val, documentType) => {
+    if (documentType === 'clearance') {
+      generateClearancePdf(val);
+    }
+  };
+  const generateClearancePdf = (val) => {
+    const doc = new jsPDF();
+    doc.setFontSize(12);
+    doc.text('BARANGAY CLEARANCE', 105, 10, null, null, 'center');
+    doc.text('This is to certify that,', 10, 20);
+    doc.text(`${val.residentname} of legal age, a bona fide resident of Barangay Pasong, Sibalom, Antique,`, 10, 25);
+    doc.text('has never been convicted of any crime whatsoever, and neither is there any criminal or administrative case pending against him/her in this Barangay.', 10, 30);
+    doc.text('Issued this _______ day of _____________, 20______', 10, 40);
+    doc.save(`Clearance_${val.residentname}.pdf`);
+  };
+
+
   return (
     <div style={{ height: '100vh' }}>
       {/* HEADER */}
@@ -99,7 +105,7 @@ export default function Documents() {
           <span style={{ color: '#1976d2', fontSize: '18px' }}>Back</span>
         </button>
         <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: '4rem' }}>
-          <i className="material-icons" style={{ color: '#1976d2', fontSize: '26px', marginRight: '1rem' }}>person</i>
+        <i className="material-icons" style={{ color: '#1976d2', fontSize: '26px', marginRight: '1rem' }}>person</i>
           <a href="/admin" style={{ color: '#1976d2', fontSize: '20px', textDecoration: 'none' }}>Admin</a>
         </div>
       </div>
@@ -144,19 +150,19 @@ export default function Documents() {
               </tr>
             </thead>
             <tbody>
-              {residentList.map((val, key) => (
-                <tr key={key}>
+              {residentList.map((val, index) => (
+                <tr key={index}>
                   <td style={{ textAlign: 'center' }}>{val.residentname}</td>
                   <td style={{ textAlign: 'center' }}>{val.residentbirthday}</td>
                   <td style={{ textAlign: 'center' }}>{val.residentsex}</td>
                   <td style={{ textAlign: 'center' }}>{val.residentcontactnumber}</td>
                   <td style={{ textAlign: 'center' }}>{val.purok}</td>
                   <td style={{ textAlign: 'center' }}>
-                    <button className="btn dropdown-trigger" data-target={`dropdown${key}`}>Select</button>
-                    <ul id={`dropdown${key}`} className="dropdown-content">
-                    <li><a href="#!" onClick={() => handleSelect(val, 'clearance')}>Barangay Clearance</a></li>
-                    <li><a href="#!" onClick={() => handleSelect(val, 'indigency')}>Certificate of Indigency</a></li>
-                    <li><a href="#!" onClick={() => handleSelect(val, 'certification')}>Barangay Certification</a></li>
+                    <button className="btn dropdown-trigger" data-target={`dropdown${index}`}>Select</button>
+                    <ul id={`dropdown${index}`} className="dropdown-content">
+                      <li><a href="#!" onClick={() => handleSelect(val, 'clearance')}>Barangay Clearance</a></li>
+                      <li><a href="#!">Certificate of Indigency</a></li>
+                      <li><a href="#!" >Barangay Certification</a></li>
                     </ul>
                   </td>
                 </tr>
@@ -165,6 +171,7 @@ export default function Documents() {
           </table>
         </div>
       </div>
+
     </div>
   );
 }

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@materializecss/materialize": "^2.1.0",
+    "@react-pdf/renderer": "^3.4.4",
     "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
     "body-parser": "^1.20.2",

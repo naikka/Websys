@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require ('bcrypt');
 const saltRounds = 10;
 const cookieParser = require("cookie-parser");
-const {createToken, validateToken} = require('./JWT')
+const {createToken, validateToken} = require('./JWT');
 
 
 app.use(cors())
@@ -22,6 +22,11 @@ const db = mysql.createConnection({
   password: 'naika@352088',
   database:'websystemdb'
 })
+
+
+
+
+
 
 ///login auth
 ///register on api
