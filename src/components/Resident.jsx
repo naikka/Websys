@@ -289,6 +289,16 @@ export default function Resident() {
                     color: "#1976d2",
                   }}
                 >
+                  Purok
+                </th>
+                <th
+                  style={{
+                    width: "16%",
+                    textAlign: "center",
+                    borderBottom: "2px solid #ddd",
+                    color: "#1976d2",
+                  }}
+                >
                   Edit/Delete
                 </th>
               </tr>
@@ -308,6 +318,7 @@ export default function Resident() {
                   <td style={{ textAlign: "center" }}>
                     {val.residentmaritalstatus}
                   </td>
+                  <td style={{ textAlign: "center" }}>{val.purok}</td>
                   <td style={{ textAlign: "center" }}>
                     <Link to="/updateResident">
                       <button
@@ -319,7 +330,8 @@ export default function Resident() {
                             val.residentbirthday,
                             val.residentsex,
                             val.residentcontactnumber,
-                            val.residentmaritalstatus
+                            val.residentmaritalstatus,
+                            val.residentpurok
                           )
                         }
                       >

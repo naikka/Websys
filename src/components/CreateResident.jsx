@@ -12,6 +12,7 @@ export default function CreateResident({ updateResidentList }) {
     const [residentsex, setSex] = useState('');
     const [residentcontactnumber, setContactnumber] = useState('');
     const [residentmaritalstatus, setMaritalstatus] = useState('');
+    const [purok, setPurok] = useState('');
 
   
   const handleGoBack = () => {
@@ -25,7 +26,8 @@ export default function CreateResident({ updateResidentList }) {
       residentbirthday: residentbirthday, 
       residentsex: residentsex, 
       residentcontactnumber: residentcontactnumber, 
-      residentmaritalstatus: residentmaritalstatus
+      residentmaritalstatus: residentmaritalstatus,
+      purok: purok
     })
     .then((response) => {
       console.log("Resident created successfully:", response.data);
@@ -120,6 +122,18 @@ export default function CreateResident({ updateResidentList }) {
                 value={residentmaritalstatus}
                 required 
                 onChange={(e) => setMaritalstatus(e.target.value)} 
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="residentmaritalstatus" className="form-label">Purok</label>
+              <input 
+                type="number" 
+                className="form-control" 
+                id="purok" 
+                name="purok" 
+                value={purok}
+                required 
+                onChange={(e) => setPurok(e.target.value)} 
               />
             </div>
             <button type="submit" className="btn btn-success">

@@ -121,6 +121,7 @@ export default function Documents() {
                 <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Birthday</th>
                 <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Sex</th>
                 <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Contact Number</th>
+                <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Purok</th>
                 <th style={{ width: '20%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Documents</th>
               </tr>
             </thead>
@@ -131,8 +132,9 @@ export default function Documents() {
                   <td style={{ textAlign: 'center' }}>{val.residentbirthday}</td>
                   <td style={{ textAlign: 'center' }}>{val.residentsex}</td>
                   <td style={{ textAlign: 'center' }}>{val.residentcontactnumber}</td>
+                  <td style={{ textAlign: 'center' }}>{val.purok}</td>
                   <td style={{ textAlign: 'center' }}>
-                    <button className="btn dropdown-trigger" data-target={`dropdown${key}`}>Select Document</button>
+                    <button className="btn dropdown-trigger" data-target={`dropdown${key}`}>Select Certificate</button>
                     <ul id={`dropdown${key}`} className="dropdown-content">
                       <li style={{ textAlign: 'center' }}><a href="#!">Barangay Certification</a></li>
                       <li style={{ textAlign: 'center' }}><a href="#!">Barangay Clearance </a></li>

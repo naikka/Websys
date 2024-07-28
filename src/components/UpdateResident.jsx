@@ -11,14 +11,16 @@ let birthday = null;
 let sex = null;
 let contactnumber = null;
 let maritalstatus = null;
+let residentpurok = null;
 
-export function SetResidentInfo(a, b, c, d, e, f) {
+export function SetResidentInfo(a, b, c, d, e, g) {
   id = a;
   name = b;
   birthday = c;
   sex = d;
   contactnumber = e;
   maritalstatus = f;
+  residentpurok = g;
 }
 
 async function handleSubmit(e) {
@@ -30,6 +32,7 @@ async function handleSubmit(e) {
     residentsex: e.target.residentsex.value,
     residentcontactnumber: e.target.residentcontactnumber.value,
     residentmaritalstatus: e.target.residentmaritalstatus.value,
+    purok:e.target.purok.value,
     residentid: id,
   };
 
@@ -134,6 +137,19 @@ export default function UpdateResident() {
                   id="residentmaritalstatus"
                   name="residentmaritalstatus"
                   defaultValue={maritalstatus}
+                  /*onChange={(e) => setNewMaritalStatus(e.target.value)}*/
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="residentmaritalstatus" className="form-label">
+                  Purok
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="purok"
+                  name="purok"
+                  defaultValue={residentpurok}
                   /*onChange={(e) => setNewMaritalStatus(e.target.value)}*/
                 />
               </div>
