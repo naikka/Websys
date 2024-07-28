@@ -5,7 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css';
 import Axios from 'axios';
-import { generateCertification} from './Certification';
+import { generateCertification} from './Certificationform';
+import { generateClearance} from './Clearance';
+import { generateIndigency} from './Indigency';
 
 
 export default function Documents() {
