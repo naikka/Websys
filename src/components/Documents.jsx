@@ -5,11 +5,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css';
 import Axios from 'axios';
+import { generateCertification} from './Certification';
+
 
 export default function Documents() {
   const navigate = useNavigate();
   const [residentList, setResidentList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSelect = (data, type) => {
+    if (type === 'clearance') {
+      generateClearance(data);
+    } else if (type === 'indigency') {
+      generateIndigency(data);
+    } else if (type === 'certification') {
+      generateCertification(data);
+    }
+  };
 
   const handleGoBack = () => {
     navigate("/home");
@@ -140,9 +152,9 @@ export default function Documents() {
                   <td style={{ textAlign: 'center' }}>
                     <button className="btn dropdown-trigger" data-target={`dropdown${key}`}>Select</button>
                     <ul id={`dropdown${key}`} className="dropdown-content">
-                      <li><a href="#!">Barangay Certification</a></li>
-                      <li><a href="#!">Barangay Clearance </a></li>
-                      <li><a href="#!">Certificate of Indigency</a></li>
+                    <li><a href="#!" onClick={() => handleSelect(val, 'clearance')}>Barangay Clearance</a></li>
+                    <li><a href="#!" onClick={() => handleSelect(val, 'indigency')}>Certificate of Indigency</a></li>
+                    <li><a href="#!" onClick={() => handleSelect(val, 'certification')}>Barangay Certification</a></li>
                     </ul>
                   </td>
                 </tr>
