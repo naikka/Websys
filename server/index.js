@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const jwt = require('jsonwebtoken');
 const bcrypt = require ('bcrypt');
-const saltRounds = 10;
+
 const cookieParser = require("cookie-parser");
 const {createToken, validateToken} = require('./JWT');
 

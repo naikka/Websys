@@ -135,7 +135,7 @@ export default function Home() {
                         <i className="material-icons" style={iconStyle}>recent_actors</i>
                         {isSidebarOpen && <span>Barangay Official</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('LogInPage')}>
+                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('')}>
                         <i className="material-icons" style={iconStyle}>exit_to_app</i>
                         {isSidebarOpen && <span>Log Out</span>}
                     </button>
