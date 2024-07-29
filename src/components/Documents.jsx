@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css';
 import Axios from 'axios';
-import jsPDF from 'jspdf';
+
 
 
 export default function Documents() {
@@ -64,6 +64,9 @@ export default function Documents() {
   const handleSelect = (val, documentType) => {
     if (documentType === 'clearance') {
       navigate('/clearance-format', { state: { resident: val } });
+    }
+    else if (documentType === 'indigency') {
+      navigate('/indigency-format',{state: {resident: val} });
     }
   };
 
@@ -151,7 +154,7 @@ export default function Documents() {
                     <button className="btn dropdown-trigger" data-target={`dropdown${index}`}>Select</button>
                     <ul id={`dropdown${index}`} className="dropdown-content">
                       <li><a href="/clearance-format" onClick={() => handleSelect(val, 'clearance')}>Barangay Clearance</a></li>
-                      <li><a href="#!">Certificate of Indigency</a></li>
+                      <li><a href="/indigency-format" onClick={() => handleSelect(val, 'indigency')}>Certificate of Indigency</a></li>
                       <li><a href="#!" >Barangay Certification</a></li>
                     </ul>
                   </td>

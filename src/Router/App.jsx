@@ -11,6 +11,7 @@ import OfficialUpdate from '../components/OfficialUpdate';
 import CreateResident from '../components/CreateResident';
 import UpdateResident from '../components/UpdateResident';
 import ClearanceFormat from '../components/ClearanceFormat';
+import IndigencyFormat from '../components/IndigencyFormat';
 
 export default function App() {
     return (
@@ -28,6 +29,7 @@ export default function App() {
                 <Route path="createResident" element={<CreateResident />} />
                 <Route path="updateResident" element={<UpdateResident />} />
                 <Route path="clearance-format" element={<ClearanceFormat />} />
+                <Route path="indigency-format" element={<IndigencyFormat />} />
                 
             </Routes>
             
