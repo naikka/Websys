@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   content: {
     margin: 30,
     fontSize: 12,
-    textAlign: 'left',
+    textAlign: 'left' ,
   },
   logoContainer: {
     flexDirection: 'row',
