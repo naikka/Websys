@@ -331,7 +331,7 @@ export default function Resident() {
                             val.residentsex,
                             val.residentcontactnumber,
                             val.residentmaritalstatus,
-                            val.residentpurok
+                            val.purok
                           )
                         }
                       >

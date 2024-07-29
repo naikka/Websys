@@ -123,14 +123,15 @@ export default function Home() {
                         <i className="material-icons" style={iconStyle}>dashboard</i>
                         {isSidebarOpen && <span>Dashboard</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('Resident')}>
-                        <i className="material-icons" style={iconStyle}>group</i>
-                        {isSidebarOpen && <span>Resident</span>}
-                    </button>
                     <button style={buttonStyle} type="button" onClick={() => handleLoginClick('Documents')}>
                         <i className="material-icons" style={iconStyle}>description</i>
                         {isSidebarOpen && <span>Certificate</span>}
                     </button>
+                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('Resident')}>
+                        <i className="material-icons" style={iconStyle}>group</i>
+                        {isSidebarOpen && <span>Resident</span>}
+                    </button>
+                    
                     <button style={buttonStyle} type="button" onClick={() => handleLoginClick('OfficialUnit')}>
                         <i className="material-icons" style={iconStyle}>recent_actors</i>
                         {isSidebarOpen && <span>Barangay Official</span>}

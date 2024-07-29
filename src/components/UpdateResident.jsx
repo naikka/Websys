@@ -13,7 +13,7 @@ let contactnumber = null;
 let maritalstatus = null;
 let residentpurok = null;
 
-export function SetResidentInfo(a, b, c, d, e, g) {
+export function SetResidentInfo(a, b, c, d, e, f, g) {
   id = a;
   name = b;
   birthday = c;
@@ -145,7 +145,7 @@ export default function UpdateResident() {
                   Purok
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   id="purok"
                   name="purok"
