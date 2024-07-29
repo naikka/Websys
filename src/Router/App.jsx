@@ -10,7 +10,7 @@ import OfficialCreate from '../components/OfficialCreate';
 import OfficialUpdate from '../components/OfficialUpdate';
 import CreateResident from '../components/CreateResident';
 import UpdateResident from '../components/UpdateResident';
-
+import ClearanceFormat from '../components/ClearanceFormat';
 
 export default function App() {
     return (
@@ -27,9 +27,11 @@ export default function App() {
                 <Route path="officialUpdate" element={<OfficialUpdate />} />
                 <Route path="createResident" element={<CreateResident />} />
                 <Route path="updateResident" element={<UpdateResident />} />
-
-
+                <Route path="clearance-format" element={<ClearanceFormat />} />
+                
             </Routes>
+            
         </BrowserRouter>
+        
     );
 }

@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const jwt = require('jsonwebtoken');
 const bcrypt = require ('bcrypt');
-
 const cookieParser = require("cookie-parser");
 const {createToken, validateToken} = require('./JWT');
 
@@ -22,8 +21,6 @@ const db = mysql.createConnection({
   password: 'naika@352088',
   database:'websystemdb'
 })
-
-
 
 
 
@@ -251,8 +248,7 @@ app.put('/updateResident', (req, res) => {
     task.purok,
     task.residentid
   ]);
-
-  console.log(data);
+ole.log(data);
 });
 
 

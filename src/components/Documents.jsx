@@ -40,6 +40,7 @@ export default function Documents() {
       });
   };
 
+
   useEffect(() => {
     if (searchQuery.trim() !== '') {
       Axios.get('http://localhost:3002/search-residents', {
@@ -62,20 +63,9 @@ export default function Documents() {
 
   const handleSelect = (val, documentType) => {
     if (documentType === 'clearance') {
-      generateClearancePdf(val);
+      navigate('/clearance-format', { state: { resident: val } });
     }
   };
-  const generateClearancePdf = (val) => {
-    const doc = new jsPDF();
-    doc.setFontSize(12);
-    doc.text('BARANGAY CLEARANCE', 105, 10, null, null, 'center');
-    doc.text('This is to certify that,', 10, 20);
-    doc.text(`${val.residentname} of legal age, a bona fide resident of Barangay Pasong, Sibalom, Antique,`, 10, 25);
-    doc.text('has never been convicted of any crime whatsoever, and neither is there any criminal or administrative case pending against him/her in this Barangay.', 10, 30);
-    doc.text('Issued this _______ day of _____________, 20______', 10, 40);
-    doc.save(`Clearance_${val.residentname}.pdf`);
-  };
-
 
   return (
     <div style={{ height: '100vh' }}>
@@ -160,7 +150,7 @@ export default function Documents() {
                   <td style={{ textAlign: 'center' }}>
                     <button className="btn dropdown-trigger" data-target={`dropdown${index}`}>Select</button>
                     <ul id={`dropdown${index}`} className="dropdown-content">
-                      <li><a href="#!" onClick={() => handleSelect(val, 'clearance')}>Barangay Clearance</a></li>
+                      <li><a href="/clearance-format" onClick={() => handleSelect(val, 'clearance')}>Barangay Clearance</a></li>
                       <li><a href="#!">Certificate of Indigency</a></li>
                       <li><a href="#!" >Barangay Certification</a></li>
                     </ul>

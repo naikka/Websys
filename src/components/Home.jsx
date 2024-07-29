@@ -123,20 +123,19 @@ export default function Home() {
                         <i className="material-icons" style={iconStyle}>dashboard</i>
                         {isSidebarOpen && <span>Dashboard</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('Documents')}>
-                        <i className="material-icons" style={iconStyle}>description</i>
-                        {isSidebarOpen && <span>Certificate</span>}
-                    </button>
                     <button style={buttonStyle} type="button" onClick={() => handleLoginClick('Resident')}>
                         <i className="material-icons" style={iconStyle}>group</i>
                         {isSidebarOpen && <span>Resident</span>}
                     </button>
-                    
+                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('Documents')}>
+                        <i className="material-icons" style={iconStyle}>description</i>
+                        {isSidebarOpen && <span>Certificate</span>}
+                    </button>
                     <button style={buttonStyle} type="button" onClick={() => handleLoginClick('OfficialUnit')}>
                         <i className="material-icons" style={iconStyle}>recent_actors</i>
                         {isSidebarOpen && <span>Barangay Official</span>}
                     </button>
-                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('')}>
+                    <button style={buttonStyle} type="button" onClick={() => handleLoginClick('LogInPage')}>
                         <i className="material-icons" style={iconStyle}>exit_to_app</i>
                         {isSidebarOpen && <span>Log Out</span>}
                     </button>
@@ -187,7 +186,7 @@ export default function Home() {
                         <div style={{ display: 'flex', flexDirection: 'column', position: 'relative', flex: 1 }}>
                             <div style={boxStyle}>
                                 <i className="material-icons" style={boxIconStyle}>people</i>
-                                <p style={boxTextStyle}>Total Number Of Residents</p>
+                                <p style={boxTextStyle}>Total Number of Residents</p>
                                 <h2 style={boxNumberStyle}>{totalResidents}</h2>
                             </div>
                             <div style={boxStyle}>
@@ -238,13 +237,13 @@ const boxStyle = {
 };
 
 const boxTextStyle = {
-    fontSize: '16px', 
+    fontSize: '18px', 
     color: '#333'
 };
 
 const boxNumberStyle = {
     fontSize: '54px', 
-    color: '#0d47a1', 
+    color: 'black', 
     textAlign: 'center',
     marginTop:'.5em',
 };
