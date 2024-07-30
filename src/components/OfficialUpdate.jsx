@@ -40,7 +40,7 @@ export default function OfficialUpdate() {
   return (
     <div className="d-flex flex-column min-vh-100">
       {/* HEADER */}
-      <header className="d-flex align-items-center bg-light shadow-sm p-3">
+      <header className="d-flex align-items-center shadow-lg p-3">
       <button
           /*onClick={handleGoBack}*/
           className="btn btn-link d-flex align-items-center"

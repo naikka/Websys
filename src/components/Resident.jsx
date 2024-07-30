@@ -205,28 +205,19 @@ export default function Resident() {
         </div>
 
         {/* Table Container */}
-        <div
+        <div className="shadow-lg"
           style={{
             backgroundColor: "white",
             padding: "20px",
             borderRadius: "8px",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            maxHeight: "70vh",
+            marginBottom: '0',
+            border: '1px solid #ddd',
+            maxHeight: "64vh",
             overflowY: "auto",
           }}
         >
-          <table
-            className="striped"
-            style={{ width: "100%", borderCollapse: "collapse" }}
-          >
-            <thead
-              style={{
-                position: "sticky",
-                top: "0",
-                backgroundColor: "white",
-                zIndex: "1",
-              }}
-            >
+          <table className="table-striped" style={{ width: '100%', tableLayout: "auto", borderCollapse: 'collapse'}}>
+          <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1', fontSize:'18px' }}>
               <tr>
                 <th
                   style={{
@@ -234,83 +225,93 @@ export default function Resident() {
                     textAlign: "center",
                     borderBottom: "2px solid #ddd",
                     color: "#1976d2",
+                    top: '0',
+                     position: 'sticky',
+                  
                   }}
                 >
                   Item
                 </th>
                 <th
                   style={{
-                    width: "16%",
+                    width: "14%",
                     textAlign: "center",
                     borderBottom: "2px solid #ddd",
                     color: "#1976d2",
+                    
                   }}
                 >
                   Name
                 </th>
                 <th
                   style={{
-                    width: "16%",
+                    width: "14%",
                     textAlign: "center",
                     borderBottom: "2px solid #ddd",
                     color: "#1976d2",
+                 
                   }}
                 >
                   Birthday
                 </th>
                 <th
                   style={{
-                    width: "16%",
+                    width: "14%",
                     textAlign: "center",
                     borderBottom: "2px solid #ddd",
                     color: "#1976d2",
+                   
                   }}
                 >
                   Sex
                 </th>
                 <th
                   style={{
-                    width: "16%",
+                    width: "14%",
                     textAlign: "center",
                     borderBottom: "2px solid #ddd",
                     color: "#1976d2",
+               
                   }}
                 >
                   Contact Number
                 </th>
                 <th
                   style={{
-                    width: "16%",
+                    width: "14%",
                     textAlign: "center",
                     borderBottom: "2px solid #ddd",
                     color: "#1976d2",
+                   
                   }}
                 >
                   Marital Status
                 </th>
                 <th
                   style={{
-                    width: "16%",
+                    width: "14%",
                     textAlign: "center",
                     borderBottom: "2px solid #ddd",
                     color: "#1976d2",
+                  
                   }}
                 >
                   Purok
                 </th>
                 <th
                   style={{
-                    width: "16%",
+                    width: "14%",
                     textAlign: "center",
                     borderBottom: "2px solid #ddd",
                     color: "#1976d2",
+               
                   }}
                 >
-                  Edit/Delete
+                  Action
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
               {residentList.map((val, key) => (
                 <tr key={key}>
                   <td style={{ textAlign: "center" }}>{key + 1}</td>
@@ -368,7 +369,6 @@ export default function Resident() {
           </table>
         </div>
       </div>
-      
 
 
     </div>
