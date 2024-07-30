@@ -3,10 +3,17 @@
     float: right; /* Position the image on the right */
   }
   
-  html, body {
+html, body {
     height: 100%;
     margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
+.equal-width {
+  width: 100%;
+}
+
+
+
 
 .container {
     min-height: 100%;

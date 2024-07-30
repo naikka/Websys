@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/main.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'material-icons/iconfont/material-icons.css';
 import axios from 'axios';
@@ -21,12 +22,12 @@ export default function CreateResident({ updateResidentList }) {
     const addResident = (event) => {
         event.preventDefault();
         axios.post('http://localhost:3002/createResident', {
-            residentname: residentname, 
-            residentbirthday: residentbirthday, 
-            residentsex: residentsex, 
-            residentcontactnumber: residentcontactnumber, 
-            residentmaritalstatus: residentmaritalstatus,
-            purok: purok
+            residentname, 
+            residentbirthday, 
+            residentsex, 
+            residentcontactnumber, 
+            residentmaritalstatus,
+            purok
         })
         .then((response) => {
             console.log("Resident created successfully:", response.data);
@@ -41,30 +42,32 @@ export default function CreateResident({ updateResidentList }) {
 
     return (
         <div className="d-flex flex-column h-100">
-            {/* HEADER */}
-            <header className="d-flex align-items-center bg-light shadow-sm p-3">
-                <button 
-                    onClick={handleGoBack} 
-                    className="btn btn-link d-flex align-items-center"
-                    style={{ color: '#ffffff' }}
-                >
-                    <i className="material-icons">arrow_back</i>
-                    <span className="ms-2">Back</span>
-                </button>
-                <div className="ms-auto d-flex align-items-center">
-                    <i className="material-icons text-primary">person</i>
-                    <a href="/admin" className="ms-2 text-primary text-decoration-none">Admin</a>
-                </div>
-            </header>
+    {/* HEADER */}
+    <header className="d-flex align-items-center bg-light shadow-sm p-3">
+        <button 
+            onClick={handleGoBack} 
+            className="btn btn-link d-flex align-items-center"
+            style={{ color: '#ffffff' }}
+        >
+            <i className="material-icons">arrow_back</i>
+            <span className="ms-2">Back</span>
+        </button>
+        <div className="ms-auto d-flex align-items-center">
+            <i className="material-icons text-primary">person</i>
+            <a href="/admin" className="ms-2 text-primary text-decoration-none">Admin</a>
+        </div>
+    </header>
 
-            {/* MAIN CONTENT */}
-            <main className="d-flex flex-column align-items-center bg-light py-4 flex-grow-1" style={{ paddingBottom: '40px' }}>
-                <h3 className="mb-4" style={{ color: '#4db6ac', fontSize: '34px', marginTop: '0' }}>CREATE RESIDENT</h3>
+    {/* MAIN CONTENT */}
+    <main className="d-flex flex-column align-items-center bg-light py-4 flex-grow-1" style={{ minHeight: '0' }}>
+        <h3 className="mb-4" style={{ color: '#4db6ac', fontSize: '34px', marginTop: '0' }}>CREATE RESIDENT</h3>
 
-                <div className="bg-white p-4 rounded shadow-sm w-100" style={{ maxWidth: '600px', flex: '1 1 auto', maxHeight:'500px' }}>
-                    <form onSubmit={addResident} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <div className="mb-3">
-                            <label htmlFor="name" className="form-label">Full Name</label>
+        <div className="bg-white p-4 rounded shadow-sm w-100" style={{ maxWidth: '600px', flex: '1 1 auto', overflowY: 'auto' }}>
+            <form onSubmit={addResident} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {/* Form Fields */}
+                <div className="row g-2 mb-3">
+                    <div className="col-md-12">
+                        <div className="input-group">
                             <input 
                                 type="text" 
                                 className="form-control" 
@@ -74,21 +77,29 @@ export default function CreateResident({ updateResidentList }) {
                                 required 
                                 onChange={(e) => setName(e.target.value)}
                             />
+                            <label htmlFor="residentname" className="form-label">Full Name</label>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="birthday" className="form-label">Birthday</label>
+                    </div>
+                </div>
+                <div className="row g-2 mb-3">
+                    <div className="col-md-12">
+                        <div className="input-group">
                             <input 
                                 type="date" 
                                 className="form-control" 
-                                id="birthday" 
+                                id="residentbirthday" 
                                 name="residentbirthday"
                                 value={residentbirthday}
                                 required 
-                                onChange={(e) => setBirthday(e.target.value)} 
+                                onChange={(e) => setBirthday(e.target.value)}
                             />
+                            <label htmlFor="residentbirthday" className="form-label">Birthday</label>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="residentsex" className="form-label">Sex</label>
+                    </div>
+                </div>
+                <div className="row g-2 mb-3">
+                    <div className="col-md-6">
+                        <div className="input-group">
                             <input 
                                 type="text" 
                                 className="form-control" 
@@ -96,11 +107,13 @@ export default function CreateResident({ updateResidentList }) {
                                 name="residentsex"
                                 value={residentsex}
                                 required 
-                                onChange={(e) => setSex(e.target.value)} 
+                                onChange={(e) => setSex(e.target.value)}
                             />
+                            <label htmlFor="residentsex" className="form-label">Sex</label>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="residentcontactnumber" className="form-label">Contact Number</label>
+                    </div>
+                    <div className="col-md-6">
+                        <div className="input-group">
                             <input 
                                 type="number" 
                                 className="form-control" 
@@ -108,11 +121,15 @@ export default function CreateResident({ updateResidentList }) {
                                 name="residentcontactnumber" 
                                 value={residentcontactnumber}
                                 required 
-                                onChange={(e) => setContactnumber(e.target.value)} 
+                                onChange={(e) => setContactnumber(e.target.value)}
                             />
+                            <label htmlFor="residentcontactnumber" className="form-label">Contact Number</label>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="residentmaritalstatus" className="form-label">Marital Status</label>
+                    </div>
+                </div>
+                <div className="row g-2 mb-3">
+                    <div className="col-md-6">
+                        <div className="input-group">
                             <input 
                                 type="text" 
                                 className="form-control" 
@@ -120,11 +137,13 @@ export default function CreateResident({ updateResidentList }) {
                                 name="residentmaritalstatus" 
                                 value={residentmaritalstatus}
                                 required 
-                                onChange={(e) => setMaritalstatus(e.target.value)} 
+                                onChange={(e) => setMaritalstatus(e.target.value)}
                             />
+                            <label htmlFor="residentmaritalstatus" className="form-label">Marital Status</label>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="purok" className="form-label">Purok</label>
+                    </div>
+                    <div className="col-md-6">
+                        <div className="input-group">
                             <input 
                                 type="number" 
                                 className="form-control" 
@@ -132,15 +151,19 @@ export default function CreateResident({ updateResidentList }) {
                                 name="purok" 
                                 value={purok}
                                 required 
-                                onChange={(e) => setPurok(e.target.value)} 
+                                onChange={(e) => setPurok(e.target.value)}
                             />
+                            <label htmlFor="purok" className="form-label">Purok</label>
                         </div>
-                        <button type="submit" className="btn btn-success">
-                            Add Resident
-                        </button>
-                    </form>
+                    </div>
                 </div>
-            </main>
+                <button type="submit" className="btn btn-success mt-3 mb-4">
+                    Add Resident
+                </button>
+            </form>
         </div>
+    </main>
+</div>
+
     );
 }

@@ -76,6 +76,13 @@ export default function Resident() {
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
+  
+  const handleOpenModal = () => {
+    const modal = M.Modal.getInstance(
+      document.getElementById("addResidentModal")
+    );
+    modal.open();
+  };
 
   return (
     <div style={{ height: "100vh" }}>
@@ -361,6 +368,9 @@ export default function Resident() {
           </table>
         </div>
       </div>
+      
+
+
     </div>
   );
 }
