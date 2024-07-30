@@ -207,106 +207,49 @@ export default function Resident() {
         {/* Table Container */}
         <div className="shadow-lg"
           style={{
-            backgroundColor: "white",
-            padding: "20px",
-            borderRadius: "8px",
-            marginBottom: '0',
-            border: '1px solid #ddd',
-            maxHeight: "64vh",
-            overflowY: "auto",
+            backgroundColor: 'white',
+                    border: '1px solid #ddd', 
+                    padding: '0', 
+                    borderRadius: '8px', 
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+                    maxHeight: '64vh', 
+                    overflowY: 'auto',
+                    display: 'flex',
+                    flexDirection: 'column'
           }}
         >
-          <table className="table-striped" style={{ width: '100%', tableLayout: "auto", borderCollapse: 'collapse'}}>
-          <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1', fontSize:'18px' }}>
+          <table className="striped" style={{ width: '100%', marginBottom: '0', tableLayout: 'auto' }}>
+          <thead style={{ position: 'sticky', top: '0', marginTop:'0', backgroundColor: 'white', zIndex: '1', }}>
               <tr>
-                <th
-                  style={{
-                    width: "5%",
-                    textAlign: "center",
-                    borderBottom: "2px solid #ddd",
-                    color: "#1976d2",
-                    top: '0',
-                     position: 'sticky',
-                  
-                  }}
-                >
+                <th style={{ width: '8%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>
                   Item
                 </th>
                 <th
-                  style={{
-                    width: "14%",
-                    textAlign: "center",
-                    borderBottom: "2px solid #ddd",
-                    color: "#1976d2",
-                    
-                  }}
-                >
+                  style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>
                   Name
                 </th>
                 <th
-                  style={{
-                    width: "14%",
-                    textAlign: "center",
-                    borderBottom: "2px solid #ddd",
-                    color: "#1976d2",
-                 
-                  }}
-                >
+                  style={{ width: '14%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>
                   Birthday
                 </th>
                 <th
-                  style={{
-                    width: "14%",
-                    textAlign: "center",
-                    borderBottom: "2px solid #ddd",
-                    color: "#1976d2",
-                   
-                  }}
-                >
+                 style={{ width: '14%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>
                   Sex
                 </th>
                 <th
-                  style={{
-                    width: "14%",
-                    textAlign: "center",
-                    borderBottom: "2px solid #ddd",
-                    color: "#1976d2",
-               
-                  }}
-                >
+                  style={{ width: '14%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>
                   Contact Number
                 </th>
                 <th
-                  style={{
-                    width: "14%",
-                    textAlign: "center",
-                    borderBottom: "2px solid #ddd",
-                    color: "#1976d2",
-                   
-                  }}
-                >
+                  style={{ width: '14%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>
                   Marital Status
                 </th>
                 <th
-                  style={{
-                    width: "14%",
-                    textAlign: "center",
-                    borderBottom: "2px solid #ddd",
-                    color: "#1976d2",
-                  
-                  }}
-                >
+                  style={{ width: '12%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>
                   Purok
                 </th>
                 <th
-                  style={{
-                    width: "14%",
-                    textAlign: "center",
-                    borderBottom: "2px solid #ddd",
-                    color: "#1976d2",
-               
-                  }}
-                >
+                  style={{ width: '8%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2'  }}>
                   Action
                 </th>
               </tr>
