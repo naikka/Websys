@@ -124,13 +124,16 @@ export default function Documents() {
 
         {/* Table Container */}
         <div style={{ 
-          backgroundColor: 'white', 
-          padding: '20px', 
-          borderRadius: '8px', 
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
-          maxHeight: '70vh', 
-          overflowY: 'auto' 
-        }}>
+                    backgroundColor: 'white',
+                    border: '1px solid #ddd', 
+                    padding: '0', 
+                    borderRadius: '8px', 
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+                    maxHeight: '64vh', 
+                    overflowY: 'auto',
+                    display: 'flex',
+                    flexDirection: 'column'  
+                }}>
           <table className="striped" style={{ width: '100%', borderCollapse: 'collapse', padding:'4em' }}>
             <thead style={{ position: 'sticky', top: '0', backgroundColor: 'white', zIndex: '1' }}>
               <tr>

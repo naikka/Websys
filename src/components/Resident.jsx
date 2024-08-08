@@ -205,9 +205,8 @@ export default function Resident() {
         </div>
 
         {/* Table Container */}
-        <div className="shadow-lg"
-          style={{
-            backgroundColor: 'white',
+        <div style={{ 
+                    backgroundColor: 'white',
                     border: '1px solid #ddd', 
                     padding: '0', 
                     borderRadius: '8px', 
@@ -215,9 +214,8 @@ export default function Resident() {
                     maxHeight: '64vh', 
                     overflowY: 'auto',
                     display: 'flex',
-                    flexDirection: 'column'
-          }}
-        >
+                    flexDirection: 'column'  
+                }}>
           <table className="striped" style={{ width: '100%', marginBottom: '0', tableLayout: 'auto' }}>
           <thead style={{ position: 'sticky', top: '0', marginTop:'0', backgroundColor: 'white', zIndex: '1', }}>
               <tr>
