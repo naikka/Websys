@@ -96,7 +96,7 @@ app.get("/profile", validateToken, (req, res) => {
 ////////OFFICIALS DATABASE///////
 ///get data to the table
 app.get("/officials", (req, res) => {
-  db.query("SELECT * FROM official ORDER BY name ASC", (err, result) => {
+  db.query("SELECT * FROM official", (err, result) => {
     if (err) {
       console.log(err);
       res.status(500).send({ message: 'Error fetching officials' });
