@@ -1,16 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { PDFViewer, Document, Page, Text, View, StyleSheet, Image, pdf } from '@react-pdf/renderer';
+import { PDFViewer, Document, Page, Text, View, StyleSheet, Image, Font, pdf } from '@react-pdf/renderer';
 import pasonglogos from '../assets/pasonglogos.png';
 import sibalomlog from '../assets/sibalomlog.png';
+import poppinsItalicbold from '../assets/poppinsItalicbold.ttf';
+import poppinslight from '../assets/poppinslight.ttf';
+import poppinsbold from '../assets/poppinsbold.ttf';
 
-// Define styles for react-pdf
+Font.register({
+  family: 'Poppins',
+  fonts: [
+    { src: poppinsItalicbold, fontWeight: 'normal', fontStyle: 'italic' }, 
+    { src: poppinsbold, fontWeight: 'bold' },
+    { src: poppinslight, fontWeight: 'normal' }, 
+  ]
+});
+
 const styles = StyleSheet.create({
   page: {
-    padding: 30,
+    padding: 36,
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
+    fontFamily: 'Poppins'
   },
   text: {
     paddingBottom: 20,
@@ -24,15 +36,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 14,
+    fontSize: 16,
     textAlign: 'center',
     marginBottom: 10,
-    
+    fontWeight: 'bold', 
   },
   content: {
     margin: 30,
     fontSize: 12,
-    textAlign: 'left' ,
+    textAlign: 'left',
   },
   logoContainer: {
     flexDirection: 'row',
@@ -41,14 +53,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logo: {
-    width: 140,
+    width: 152,
     height: 80,
     margin: 20,
   },
   centerText: {
     textAlign: 'center',
     fontSize: 14,
-    fontWeight: 'bold',
     marginVertical: 4,
   },
   formContainer: {
@@ -64,10 +75,22 @@ const styles = StyleSheet.create({
     padding: '8px',
     width: '120px',
   },
+  line: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+    width: '100%',
+    marginVertical: 5,
+  },
   button: {
     fontSize: '14px',
     padding: '10px 20px',
     cursor: 'pointer',
+  },
+  italicText: {
+    fontFamily: 'Poppins',
+    fontStyle: 'italic',
+    fontSize: 12,
+    textAlign: 'center',
   },
 });
 
@@ -87,7 +110,7 @@ const ClearanceFormat = () => {
 
   const MyDocument = () => (
     <Document>
-      <Page size="A4" style={styles.page}>
+      <Page size={[612, 792]} style={styles.page}>
         <View style={styles.logoContainer}>
           <Image src={pasonglogos} style={styles.logo} />
           <View style={{ width: '100%', textAlign: 'center' }}>
@@ -100,19 +123,19 @@ const ClearanceFormat = () => {
           <Image src={sibalomlog} style={styles.logo} />
         </View>
         <View style={styles.content}>
-        <Text style={{...styles.title, fontSize: 14, fontWeight: 'bold', marginBottom: 30, width: '100%', textAlign: 'center' }}>BARANGAY CLEARANCE</Text>
-          <Text style={{ paddingBottom: 10 }}>TO WHOM IT MAY CONCERN:</Text>
-          <Text style={styles.text}>This is to certify that, {resident.residentname} of legal age, a bona fide resident of Barangay Pasong, Sibalom, Antique, has never been convicted of any crime whatsoever, and neither is there any criminal or administrative case pending against him/her in this Barangay;</Text>
-          <Text style={styles.text}>I, further certify that, {resident.residentname} is personally known to be a person of good moral character and reputation, he/she is a peaceful and law abiding citizen of this Barangay;</Text>
+          <Text style={{...styles.title, fontSize: 16, marginBottom: 20, width: '100%', textAlign: 'center' }}>Barangay Clearance</Text>
+          <Text style={{ paddingBottom: 20 }}>TO WHOM IT MAY CONCERN:</Text>
+          <Text style={styles.text}>This is to certify that,  {resident.residentname}   of legal age, a bona fide resident of Barangay Pasong, Sibalom, Antique, has never been convicted of any crime whatsoever, and neither is there any criminal or administrative case pending against him/her in this Barangay;</Text>
+          <Text style={styles.text}>I, further certify that,  {resident.residentname}  is personally known to be a person of good moral character and reputation, he/she is a peaceful and law abiding citizen of this Barangay;</Text>
           <Text style={styles.text}>This Barangay clearance is being issued upon the request of both interested party for whatever legal purposes it may serve;</Text>
-          <Text style={{ paddingBottom: 20, lineHeight: 1.5 }}>Issued this {day} day of {month} {year} at the office of the Punong Barangay of Barangay Pasong, Sibalom, Antique, Philippines.</Text>
+          <Text style={{ paddingBottom: 20, lineHeight: 1.5 }}>Issued this  {day} day of {month} {year}  at the office of the Punong Barangay of Barangay Pasong, Sibalom, Antique, Philippines.</Text>
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-          <View style={{ alignItems: 'center' }}>
-          <Text style={{ fontSize: 14, textAlign: 'center', marginTop:60, }}>{punongBarangayName}</Text>
-            <Text style={{ fontSize: 12, marginBottom:40 }}>Punong Barangay</Text>
-            
+            <View style={{ alignItems: 'center' }}>
+              <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 26 }}>{punongBarangayName}</Text>
+              <View style={styles.line} />
+              <Text style={styles.italicText}>Punong Barangay</Text>
+            </View>
           </View>
-        </View>
           <Text style={{ paddingBottom: 10 }}>Amount Paid: {amountPaid}</Text>
           <Text style={{ paddingBottom: 10 }}>O.R. No: {orNo}</Text>
           <Text style={{ paddingBottom: 10 }}>Date Issued: {month} {day}, {year}</Text>

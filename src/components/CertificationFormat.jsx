@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PDFViewer, Document, Page, Text, View, StyleSheet, Image, Font, pdf } from '@react-pdf/renderer';
 import pasonglogos from '../assets/pasonglogos.png';
@@ -11,18 +11,19 @@ Font.register({
   family: 'Poppins',
   fonts: [
     { src: poppinsItalicbold, fontWeight: 'normal', fontStyle: 'italic' }, 
-    { src: poppinsbold, fontWeight: 'bold' },
+    { src: poppinsbold, fontWeight: 'bold', fontStyle: 'bold' }, 
     { src: poppinslight, fontWeight: 'normal'}, 
   ]
 });
 
+// Define styles for react-pdf
 const styles = StyleSheet.create({
   page: {
     padding: 36,
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
-    fontFamily:'Poppins'
+    fontFamily: 'Poppins'
   },
   text: {
     paddingBottom: 20,
@@ -39,8 +40,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: 'center',
     marginBottom: 10,
-    fontWeight: 'bold', 
+    fontWeight: 'bold',
   },
+
   content: {
     margin: 30,
     fontSize: 12,
@@ -56,12 +58,6 @@ const styles = StyleSheet.create({
     width: 152,
     height: 80,
     margin: 20,
-  },
-  line: {
-    borderBottomWidth: 1,
-    borderBottomColor: 'black',
-    width: '100%',
-    marginVertical: 5,
   },
   centerText: {
     textAlign: 'center',
@@ -81,6 +77,12 @@ const styles = StyleSheet.create({
     padding: '8px',
     width: '120px',
   },
+  line: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+    width: '100%',
+    marginVertical: 5,
+  },
   button: {
     fontSize: '14px',
     padding: '10px 20px',
@@ -91,15 +93,16 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     fontSize: 12,
     textAlign: 'center',
+    marginBottom: 60
   },
 });
 
-const IndigencyFormat = () => {
+const CertificationFormat = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const resident = state?.resident || {};
+  const resident = state?.resident;
 
-  const [ageinput, setAge] = useState('');
+  const [request, setRequest] = useState('');
   const [amountPaid, setAmountPaid] = useState('');
   const [orNo, setOrNo] = useState('');
   const [punongBarangayName, setPunongBarangayName] = useState('');
@@ -124,14 +127,12 @@ const IndigencyFormat = () => {
           <Image src={sibalomlog} style={styles.logo} />
         </View>
         <View style={styles.content}>
-          <Text style={{...styles.title, fontSize: 16, fontWeight: 'bold', marginBottom: 30, width: '100%', textAlign: 'center' }}>Certificate of Indigency</Text>
+          <Text style={{...styles.title, fontSize: 16, marginBottom: 30, width: '100%', textAlign: 'center' }}>Barangay Certification</Text>
           <Text style={{ paddingBottom: 20 }}>TO WHOM IT MAY CONCERN:</Text>
-          <Text style={styles.text}>This is to certify that,  {resident.residentname},  {ageinput} years old,  {resident.residentsex},  {resident.residentmaritalstatus},  a Filipino Citizen, a bona fide resident of 
-            Barangay Pasong, Sibalom , Antique, is known to be that he/she is in crisis situation and belongs to indigent and poor families of this Barangay;
+          <Text style={styles.text}>
+            This is to certify that, {resident.residentname} of legal age, {resident.residentmaritalstatus}, a bona fide resident of Barangay Pasong, Sibalom, Antique, is known to be that he/she is residing at Purok {resident.purok} of this Barangay;
           </Text>
-          <Text style={styles.text}>This certification is being issued upon the request of the above name of person for whatever legal intent and purpose it may serve him/her best;
-          </Text>
-          <Text style={{ paddingBottom: 20, lineHeight: 1.5 }}>Issued this {day} day of {month} {year} at the office of the Punong Barangay of Barangay Pasong, Sibalom, Antique, Philippines.</Text>
+          <Text style={styles.text}>This certification is being issued upon the request of both interested party for {request}.</Text>
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
             <View style={{ alignItems: 'center' }}>
               <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 60 }}>{punongBarangayName}</Text>
@@ -147,7 +148,7 @@ const IndigencyFormat = () => {
     </Document>
   );
 
-  const generateIndigencyPdf = async () => {
+  const generateCertificationPdf = async () => {
     const doc = <MyDocument />;
     const asPdf = pdf([]); // Create a new PDF
     asPdf.updateContainer(doc); // Add the document to the PDF
@@ -155,12 +156,12 @@ const IndigencyFormat = () => {
     const url = URL.createObjectURL(blob); // Create an object URL
     const a = document.createElement('a');
     a.href = url;
-    a.download = `Indigency_${resident.residentname}.pdf`;
+    a.download = `Certification_${resident.residentname}.pdf`;
     a.click();
     URL.revokeObjectURL(url);
   };
 
-  if (!resident.residentname) {
+  if (!resident) {
     return <div>No resident data available</div>;
   }
 
@@ -169,11 +170,11 @@ const IndigencyFormat = () => {
       <div style={styles.formContainer}>
         <button style={styles.button} onClick={() => navigate("/documents")}>Back to Documents</button>
         <label>
-          Enter Age:
+          Request:
           <input 
             type="text" 
-            value={ageinput} 
-            onChange={(e) => setAge(e.target.value)} 
+            value={request} 
+            onChange={(e) => setRequest(e.target.value)} 
             style={styles.input} 
           />
         </label>
@@ -204,7 +205,7 @@ const IndigencyFormat = () => {
             style={styles.input} 
           />
         </label>
-        <button style={styles.button} onClick={generateIndigencyPdf}>Generate PDF</button>
+        <button style={styles.button} onClick={generateCertificationPdf}>Generate PDF</button>
       </div>
       <PDFViewer style={{ width: '100%', height: '90vh' }}>
         <MyDocument />
@@ -213,4 +214,4 @@ const IndigencyFormat = () => {
   );
 };
 
-export default IndigencyFormat;
+export default CertificationFormat;

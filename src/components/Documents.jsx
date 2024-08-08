@@ -11,12 +11,23 @@ import Axios from 'axios';
 export default function Documents() {
   const navigate = useNavigate();
   const [residentList, setResidentList] = useState([]);
+  const [officialsList, setOfficialsList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedResident, setSelectedResident] = useState(null);
 
 
   const handleGoBack = () => {
     navigate("/home");
+  };
+
+  const fetchResidents = () => {
+    Axios.get('http://localhost:3002/residents')
+      .then(response => {
+        setResidentList(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   useEffect(() => {
@@ -30,10 +41,14 @@ export default function Documents() {
     });
   }, [residentList]);
 
-  const fetchResidents = () => {
-    Axios.get('http://localhost:3002/residents')
+  useEffect(() => {
+    fetchOfficials();
+  }, []);
+
+  const fetchOfficials = () => {
+    Axios.get('http://localhost:3002/officials')
       .then(response => {
-        setResidentList(response.data);
+        setOfficialList(response.data);
       })
       .catch(error => {
         console.error(error);
@@ -63,10 +78,13 @@ export default function Documents() {
 
   const handleSelect = (val, documentType) => {
     if (documentType === 'clearance') {
-      navigate('/clearance-format', { state: { resident: val } });
+      navigate('/clearance-format', { state: { resident: val, official: officialsList } });
     }
     else if (documentType === 'indigency') {
-      navigate('/indigency-format',{state: {resident: val} });
+      navigate('/indigency-format',{state: {resident: val, official: officialsList} });
+    }
+    else if (documentType === 'certification') {
+      navigate('/certification-format',{state: {resident: val, official: officialsList} });
     }
   };
 
@@ -142,7 +160,7 @@ export default function Documents() {
                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Sex</th>
                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Contact Number</th>
                 <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Purok</th>
-                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Documents</th>
+                <th style={{ width: '16%', textAlign: 'center', borderBottom: '2px solid #ddd', color:'#1976d2' }}>Certificate</th>
               </tr>
             </thead>
             <tbody>
@@ -158,7 +176,7 @@ export default function Documents() {
                     <ul id={`dropdown${index}`} className="dropdown-content">
                       <li><a href="/clearance-format" onClick={() => handleSelect(val, 'clearance')}>Barangay Clearance</a></li>
                       <li><a href="/indigency-format" onClick={() => handleSelect(val, 'indigency')}>Certificate of Indigency</a></li>
-                      <li><a href="#!" >Barangay Certification</a></li>
+                      <li><a href="/certification-format" onClick={() => handleSelect(val, 'certification')}>Barangay Certification</a></li>
                     </ul>
                   </td>
                 </tr>
