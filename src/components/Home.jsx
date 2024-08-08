@@ -245,7 +245,7 @@ export default function Home() {
               person
             </i>
             <a
-              href="/admin"
+              href="/home"
               style={{
                 color: "#1976d2",
                 fontSize: "20px",
